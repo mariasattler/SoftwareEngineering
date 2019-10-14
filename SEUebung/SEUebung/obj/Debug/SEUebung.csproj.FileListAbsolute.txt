@@ -1,0 +1,7 @@
+C:\Users\sattler\Documents\GitHub\SoftwareEngineering\SEUebung\SEUebung\bin\Debug\SEUebung.exe.config
+C:\Users\sattler\Documents\GitHub\SoftwareEngineering\SEUebung\SEUebung\bin\Debug\SEUebung.exe
+C:\Users\sattler\Documents\GitHub\SoftwareEngineering\SEUebung\SEUebung\bin\Debug\SEUebung.pdb
+C:\Users\sattler\Documents\GitHub\SoftwareEngineering\SEUebung\SEUebung\obj\Debug\SEUebung.csprojAssemblyReference.cache
+C:\Users\sattler\Documents\GitHub\SoftwareEngineering\SEUebung\SEUebung\obj\Debug\SEUebung.csproj.CoreCompileInputs.cache
+C:\Users\sattler\Documents\GitHub\SoftwareEngineering\SEUebung\SEUebung\obj\Debug\SEUebung.exe
+C:\Users\sattler\Documents\GitHub\SoftwareEngineering\SEUebung\SEUebung\obj\Debug\SEUebung.pdb
