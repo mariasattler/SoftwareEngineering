@@ -61,15 +61,22 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Interfaces\IRequest.cs" />
+    <Compile Include="Interfaces\IResponse.cs" />
     <Compile Include="Interfaces\IUrl.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Request.cs" />
+    <Compile Include="StringHelper\HTTP.cs" />
+    <Compile Include="UnitTests\ResponseTest.cs" />
     <Compile Include="UnitTests\UrlParserTest.cs" />
-    <Compile Include="UrlParser.cs" />
+    <Compile Include="Url.cs" />
+    <Compile Include="Webserver.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+    <Compile Include="Response.cs" />
   </ItemGroup>
   <ItemGroup>
     <Analyzer Include="..\packages\xunit.analyzers.0.10.0\analyzers\dotnet\cs\xunit.analyzers.dll" />

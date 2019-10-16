@@ -9,10 +9,10 @@ using System.Threading.Tasks;
 
 namespace SEUebung
 {
-    public class UrlParser : IUrl
+    public class Url : IUrl
     {
         private string _url;
-        public UrlParser(string url)
+        public Url(string url)
         {
             _url = url;
         }

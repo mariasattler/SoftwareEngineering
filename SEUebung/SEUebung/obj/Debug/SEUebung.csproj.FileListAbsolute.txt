@@ -15,4 +15,3 @@ C:\Users\sattler\Documents\GitHub\SoftwareEngineering\SEUebung\SEUebung\obj\Debu
 C:\Users\sattler\Documents\GitHub\SoftwareEngineering\SEUebung\SEUebung\bin\Debug\xunit.runner.utility.net452.dll
 C:\Users\sattler\Documents\GitHub\SoftwareEngineering\SEUebung\SEUebung\bin\Debug\xunit.runner.visualstudio.testadapter.dll
 C:\Users\sattler\Documents\GitHub\SoftwareEngineering\SEUebung\SEUebung\bin\Debug\xunit.runner.reporters.net452.dll
-C:\Users\sattler\Documents\GitHub\SoftwareEngineering\SEUebung\SEUebung\obj\Debug\SEUebung.csprojAssemblyReference.cache

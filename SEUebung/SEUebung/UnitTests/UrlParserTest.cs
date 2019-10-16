@@ -65,10 +65,10 @@ namespace SEUebung.UnitTests
         private static string _urlwithfile = @"https://example.org/test.org?a=1&b=2";
         private static string _urlwithfragement = @"https://example.org/test.org?a=1&b=2#ressource";
         private static string _urlempty = string.Empty;
-        private UrlParser _parser2params = new UrlParser(_url2params);
-        private UrlParser _parserEmpty = new UrlParser(_urlempty);
-        private UrlParser _parserWithFile = new UrlParser(_urlwithfile);
-        private UrlParser _parserWithFragement = new UrlParser(_urlwithfragement);
+        private Url _parser2params = new Url(_url2params);
+        private Url _parserEmpty = new Url(_urlempty);
+        private Url _parserWithFile = new Url(_urlwithfile);
+        private Url _parserWithFragement = new Url(_urlwithfragement);
         #endregion [private]
 
     }
