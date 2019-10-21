@@ -13,29 +13,29 @@ namespace SEUebung.UnitTests
         public void SetStatuscode_Set200_Status200OK()
         {
             Response res = new Response();
-            res.SetStatuscode(200);
+            res.StatusCode = 200;
             Assert.Equal("200 - OK", res.Status);
         }
         [Fact]
         public void SetStatuscode_Set400_Status400BadRequest()
         {
             Response res = new Response();
-            res.SetStatuscode(400);
+            res.StatusCode = 400;
             Assert.Equal("400 - Bad Request", res.Status);
         }
         [Fact]
-        public void SetStatuscode_Setrandom_Statusnull()
+        public void SetStatuscode_Setrandom_StatusEmpty()
         {
             Response res = new Response();
-            res.SetStatuscode(234234);
-            Assert.Null(res.Status);
+            res.StatusCode = 234234;
+            Assert.Equal(string.Empty, res.Status);
         }
         [Fact]
         public void AddHeader_SetTest_HeaderIncludesTest()
         {
             Response res = new Response();
             res.AddHeader("Test", "test");
-            Assert.True(res.Header.ContainsKey("Test"));
+            Assert.True(res.Headers.ContainsKey("Test"));
         }
         [Fact]
         public void SetContent_SetStringLength2_ContentLenghtof2()

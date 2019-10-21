@@ -57,7 +57,7 @@ namespace SEUebung
                 }
                 else
                     return dict;
-               
+
             }
         }
 
@@ -73,7 +73,20 @@ namespace SEUebung
         {
             get
             {
-                return _url.Split('/');
+                string[] emptyarray = new string[] { };
+                if (_url != null && _url != string.Empty)
+                {
+                    string newurl = _url;
+                    if (newurl[0] == '/')
+                    {
+                        newurl = newurl.Remove(0, 1);
+
+                    }
+                    return newurl.Split('/');
+                }
+                else
+                    return emptyarray;
+
             }
         }
 
@@ -81,19 +94,25 @@ namespace SEUebung
         {
             get
             {
-                string lastsegment = Segments[Segments.Length - 1];
-                if (lastsegment.Contains('?'))
+                if (Segments.Length > 0)
                 {
-                    string pfad = lastsegment.Split('?')[0];
-                    if (pfad != string.Empty)
+                    string lastsegment = Segments[Segments.Length - 1];
+                    if (lastsegment.Contains('?'))
                     {
-                        return pfad;
+                        string pfad = lastsegment.Split('?')[0];
+                        if (pfad != string.Empty)
+                        {
+                            return pfad;
+                        }
+                        else
+                            return string.Empty;
                     }
                     else
                         return string.Empty;
                 }
                 else
-                    return string.Empty;              
+                    return string.Empty;
+
 
             }
         }
@@ -103,7 +122,7 @@ namespace SEUebung
             get
             {
                 string extension = string.Empty;
-                if(FileName != string.Empty)
+                if (FileName != string.Empty)
                 {
                     extension = FileName.Split('.')[1];
                     return "." + extension;
@@ -117,13 +136,19 @@ namespace SEUebung
         {
             get
             {
-                string lastsegment = Segments[Segments.Length - 1];
-                string[] fragment = lastsegment.Split('#');
-                if (fragment.Length == 2)
+                if (Segments.Length > 0)
                 {
-                    return fragment[1];
+                    string lastsegment = Segments[Segments.Length - 1];
+                    string[] fragment = lastsegment.Split('#');
+                    if (fragment.Length == 2)
+                    {
+                        return fragment[1];
+                    }
+                    else return string.Empty;
                 }
-                else return string.Empty;
+                else
+                    return string.Empty;
+                
             }
         }
     }

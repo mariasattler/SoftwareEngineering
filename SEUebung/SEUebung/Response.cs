@@ -11,12 +11,12 @@ namespace SEUebung
     public class Response : IResponse
     {
         private Byte[] contentBytes;
-        private string ServerName;
 
         public Response()
         {
-            Header = new Dictionary<string, string>();
-            ServerName = "Test Maria";
+            Headers = new Dictionary<string, string>();
+            ServerHeader = "BIF-SWE1-Server";
+            Status = string.Empty;
         }
 
         public string Status
@@ -29,7 +29,7 @@ namespace SEUebung
             get
             {
                 string value = null;
-                Header.TryGetValue(StringHelper.HTTP.CONTENT_LENGTH, out value);
+                Headers.TryGetValue(FixStrings.HTTP.CONTENT_LENGTH, out value);
                 if (value != null)
                     return Int32.Parse(value);
                 return 0;
@@ -41,48 +41,48 @@ namespace SEUebung
         {
             get
             {
-                if (!Header.ContainsKey(StringHelper.HTTP.CONTENT_LANGUAGE))
+                if (!Headers.ContainsKey(FixStrings.HTTP.CONTENT_LANGUAGE))
                     return null;
-                return Header[StringHelper.HTTP.CONTENT_LANGUAGE];
+                return Headers[FixStrings.HTTP.CONTENT_LANGUAGE];
             }
         }
-
         public string ContentType
         {
             get
             {
-                if (!Header.ContainsKey(StringHelper.HTTP.CONTENT_TYPE))
+                if (!Headers.ContainsKey(FixStrings.HTTP.CONTENT_TYPE))
                     return null;
-                return Header[StringHelper.HTTP.CONTENT_TYPE];
+                return Headers[FixStrings.HTTP.CONTENT_TYPE];
             }
+            set { }
         }
-
-
-        public IDictionary<string, string> Header { get; private set; }
-
+        public IDictionary<string, string> Headers { get; private set; }
         public void AddHeader(string header, string value)
         {
-            Header[header] = value;
+            Headers[header] = value;
         }
-
         public void Send(Stream ns)
         {
-            if (!String.IsNullOrEmpty(ContentType) && ContentLength <= 0)
+            if (Status == string.Empty)
             {
-                throw new InvalidOperationException("Sending a content type without content is not allowed");
+                throw new InvalidOperationException("Status muss gesetzt werden");
             }
+            // Write Data in Header
+            StreamWriter head = new StreamWriter(ns, Encoding.ASCII);
+            head.NewLine = "\r\n";
+            head.WriteLine("HTTP/1.1 {0}", Status);
+            head.WriteLine("Server: {0}", ServerHeader);
+            Console.WriteLine("\r\n");
+            Console.WriteLine("HTTP/1.1 {0}", Status);
+            Console.WriteLine("Server: {0}", ServerHeader);
 
-            // Write Header Data
-            StreamWriter headerWriter = new StreamWriter(ns, Encoding.ASCII);
-            headerWriter.NewLine = "\r\n";
-            headerWriter.WriteLine("HTTP/1.1 {0}", Status);
-            headerWriter.WriteLine("Server: {0}", ServerName);
-            foreach (var item in Header)
+            foreach (var item in Headers)
             {
-                headerWriter.WriteLine("{0}: {1}", item.Key, item.Value);
+                head.WriteLine("{0}: {1}", item.Key, item.Value);
+                Console.WriteLine("{0}: {1}", item.Key, item.Value);
             }
-            headerWriter.WriteLine();
-            headerWriter.Flush();
+            head.WriteLine();
+            head.Flush();
 
             // Write Content Data
             if (contentBytes != null)
@@ -99,24 +99,38 @@ namespace SEUebung
                 }
             }
         }
+        //need to set stream;
+        public void SetContent(Stream stream)
+        {
+            byte[] b;
+            using (BinaryReader br = new BinaryReader(stream))
+            {
+                b = br.ReadBytes((int)stream.Length);
+            }
+            SetContent(b);
+        }
         public void SetContent(Byte[] content)
         {
             this.contentBytes = content;
-            Header.Add(StringHelper.HTTP.CONTENT_LENGTH, content.Length.ToString());
+            Headers.Add(FixStrings.HTTP.CONTENT_LENGTH, content.Length.ToString());
         }
-
         public void SetContent(string content)
         {
             SetContent(Encoding.UTF8.GetBytes(content));
         }
-		public void SetStatuscode(int status)
+        public int StatusCode
         {
-            string value = null;
-            StringHelper.HTTP.STATUS_CODES.TryGetValue(status, out value);
-			if(value != null)
+            get { return StatusCode; }
+            set
             {
-                Status = status.ToString() + " - " + value;
+                string outvalue = null;
+                FixStrings.HTTP.STATUS_CODES.TryGetValue(value, out outvalue);
+                if (outvalue != null)
+                {
+                    Status = value.ToString() + " - " + outvalue;
+                }
             }
         }
+        public string ServerHeader { get; set; }
     }
 }

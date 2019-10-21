@@ -42,10 +42,10 @@ namespace SEUebung
                 if (!req.IsValid)
                 {
                     Response res = new Response();
-                    res.AddHeader(StringHelper.HTTP.CONTENT_TYPE, "text/html");
-                    res.AddHeader(StringHelper.HTTP.CONTENT_LANGUAGE, "de");
+                    res.AddHeader(FixStrings.HTTP.CONTENT_TYPE, "text/html");
+                    res.AddHeader(FixStrings.HTTP.CONTENT_LANGUAGE, "de");
                     res.SetContent("<!DOCTYPE html><html><body><h1>Test</h1><h3>hi</h3></body></html>");
-                    res.SetStatuscode(200);
+                    res.StatusCode = 200;
                     res.Send(ns);
                 }
                 else
@@ -86,10 +86,10 @@ namespace SEUebung
 
             Console.WriteLine(localURL);
             Response err = new Response();
-            err.SetStatuscode(400);
+            err.StatusCode = 400;
             err.SetContent(bytes);
-            err.AddHeader(StringHelper.HTTP.CONTENT_TYPE, "text/html");
-            err.AddHeader(StringHelper.HTTP.CONTENT_LANGUAGE, "de");
+            err.AddHeader(FixStrings.HTTP.CONTENT_TYPE, "text/html");
+            err.AddHeader(FixStrings.HTTP.CONTENT_LANGUAGE, "de");
             err.Send(ns);
         }
 

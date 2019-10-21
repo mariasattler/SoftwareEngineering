@@ -17,9 +17,14 @@ namespace SEUebung.UnitTests
             Assert.Equal(2, _parser2params.ParameterCount);
         }
         [Fact]
+        public void Path_UrlwithParamsAndFile_onlyPath()
+        {
+            Assert.Equal(@"/example.org/test.org", _parserWithFile.Path);
+        }
+        [Fact]
         public void Path_UrlwithParams_httpsexampleorg()
         {
-            Assert.Equal(@"https://example.org/", _parser2params.Path);
+            Assert.Equal(@"/example.org/", _parser2params.Path);
         }
         [Fact]
         public void Parameter_UrlwithtwoParameters_One()
@@ -58,12 +63,22 @@ namespace SEUebung.UnitTests
         {
             Assert.Equal("ressource", _parserWithFragement.Fragment);
         }
+        [Fact]
+        public void Segments_Urlwith3Segments_Equal3()
+        {
+            string url = @"/foo/bar/test.jpg";
+            Url test = new Url(url);
+
+            Assert.Equal(3, test.Segments.Length);
+            //Assert.Equal("bar", test.Segments[1]);
+
+        }
         #endregion
 
         #region [private]
-        private static string _url2params = @"https://example.org/?a=1&b=2";
-        private static string _urlwithfile = @"https://example.org/test.org?a=1&b=2";
-        private static string _urlwithfragement = @"https://example.org/test.org?a=1&b=2#ressource";
+        private static string _url2params = @"/example.org/?a=1&b=2";
+        private static string _urlwithfile = @"/example.org/test.org?a=1&b=2";
+        private static string _urlwithfragement = @"/example.org/test.org?a=1&b=2#ressource";
         private static string _urlempty = string.Empty;
         private Url _parser2params = new Url(_url2params);
         private Url _parserEmpty = new Url(_urlempty);

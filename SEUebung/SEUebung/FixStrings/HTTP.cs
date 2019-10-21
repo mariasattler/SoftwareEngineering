@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SEUebung.StringHelper
+namespace SEUebung.FixStrings
 {
     public class HTTP
     {
@@ -44,10 +44,18 @@ namespace SEUebung.StringHelper
             STATUS_CODES.Add(504, "Gateway Time-out");
         }
 
+        //reponse
         public static string CONTENT_TYPE = "Content-Type";
+        public static string CONTENT_TYPE_LW = CONTENT_TYPE.ToLower();
         public static string CONTENT_LANGUAGE = "Content-Language";
-        public static string CONTENT_LENGTH = " Content-Length";
+        public static string CONTENT_LANGUAGE_LW = CONTENT_LANGUAGE.ToLower();
+        public static string CONTENT_LENGTH = "Content-Length";
+        public static string CONTENT_LENGTH_LW = CONTENT_LENGTH.ToLower();
 
-     
+        //request
+        public static string USER_AGENT = "User-Agent";
+        public static string USER_AGENT_LW = USER_AGENT.ToLower();
+
+
     }
 }
