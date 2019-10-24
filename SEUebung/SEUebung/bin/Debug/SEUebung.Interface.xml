@@ -23,6 +23,11 @@
             <param name="req"></param>
             <returns>A new response object.</returns>
         </member>
+        <member name="T:SEUebung.Interfaces.IPluginManager">
+            <summary>
+            PluginManager
+            </summary>
+        </member>
         <member name="P:SEUebung.Interfaces.IPluginManager.Plugins">
             <summary>
             Returns a list of all plugins. Never returns null.
@@ -99,6 +104,11 @@
         <member name="P:SEUebung.Interfaces.IRequest.ContentBytes">
             <summary>
             Returns the request content (body) as byte[] or null if there is no content.
+            </summary>
+        </member>
+        <member name="T:SEUebung.Interfaces.IResponse">
+            <summary>
+            interace for the Repsonse
             </summary>
         </member>
         <member name="P:SEUebung.Interfaces.IResponse.Headers">

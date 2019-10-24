@@ -4,10 +4,56 @@
         <name>SEUebung</name>
     </assembly>
     <members>
+        <member name="T:SEUebung.PluginManager">
+            <summary>
+            Plugin Manager
+            </summary>
+        </member>
+        <member name="M:SEUebung.PluginManager.#ctor">
+            <summary>
+            Constructor 
+            </summary>
+        </member>
         <member name="P:SEUebung.PluginManager.Plugins">
             <summary>
             returns a list of all Plugins
             </summary>
+        </member>
+        <member name="M:SEUebung.PluginManager.Add(SEUebung.Interfaces.IPlugin)">
+            <summary>
+            Adds a Plugin to the PluginManager when given a Typ Plugin
+            </summary>
+            <param name="plugin"></param>
+        </member>
+        <member name="M:SEUebung.PluginManager.Add(System.String)">
+            <summary>
+            Adds a Plugin to the PluginManager when given a string
+            </summary>
+            <param name="plugin"></param>
+        </member>
+        <member name="M:SEUebung.PluginManager.Clear">
+            <summary>
+            clears the Plugin
+            </summary>
+        </member>
+        <member name="T:SEUebung.Plugin.TestPlugin2">
+            <summary>
+            TestPlugin
+            </summary>
+        </member>
+        <member name="M:SEUebung.Plugin.TestPlugin2.CanHandle(SEUebung.Interfaces.IRequest)">
+            <summary>
+            checks if the Plugin is valid
+            </summary>
+            <param name="req"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SEUebung.Plugin.TestPlugin2.Handle(SEUebung.Interfaces.IRequest)">
+            <summary>
+            handles the Plugin and returns the response
+            </summary>
+            <param name="req"></param>
+            <returns></returns>
         </member>
         <member name="T:SEUebung.Plugin.TestPlugin">
             <summary>
@@ -28,6 +74,72 @@
             <param name="req"></param>
             <returns></returns>
         </member>
+        <member name="T:SEUebung.Request">
+            <summary>
+            Request
+            </summary>
+        </member>
+        <member name="M:SEUebung.Request.#ctor(System.IO.Stream)">
+            <summary>
+            Constructor for the Request. reads the Header line by line
+            </summary>
+            <param name="ns"></param>
+        </member>
+        <member name="P:SEUebung.Request.Method">
+            <summary>
+            returns the Method
+            </summary>
+        </member>
+        <member name="P:SEUebung.Request.Url">
+            <summary>
+            returns the URL
+            </summary>
+        </member>
+        <member name="P:SEUebung.Request.Headers">
+            <summary>
+            returns the a Dictionary of all Header Values from the Request
+            </summary>
+        </member>
+        <member name="P:SEUebung.Request.IsValid">
+            <summary>
+            checks if the Request is valid
+            </summary>
+        </member>
+        <member name="P:SEUebung.Request.UserAgent">
+            <summary>
+            returns the UserAgent
+            </summary>
+        </member>
+        <member name="P:SEUebung.Request.HeaderCount">
+            <summary>
+            returns how many lines the Header has
+            </summary>
+        </member>
+        <member name="P:SEUebung.Request.ContentLength">
+            <summary>
+            returns the ContentLength
+            </summary>
+        </member>
+        <member name="P:SEUebung.Request.ContentType">
+            <summary>
+            returns the ContentType
+            </summary>
+        </member>
+        <member name="P:SEUebung.Request.ContentStream">
+            <summary>
+            returns the Stream
+            </summary>
+        </member>
+        <member name="P:SEUebung.Request.ContentString">
+            <summary>
+            returns the ContentString
+            </summary>
+        </member>
+        <member name="P:SEUebung.Request.ContentBytes">
+            <summary>
+            returns the Content in Bytes
+            </summary>
+        </member>
         <member name="T:SEUebung.Url">
             <summary>
             URL class
@@ -38,6 +150,11 @@
             constructor of the URL
             </summary>
             <param name="url"></param>
+        </member>
+        <member name="T:SEUebung.Webserver">
+            <summary>
+            Webserver class
+            </summary>
         </member>
         <member name="M:SEUebung.Webserver.#ctor">
             <summary>
@@ -51,12 +168,85 @@
         </member>
         <member name="M:SEUebung.Webserver.HandleRequest(System.Object)">
             <summary>
-            handles the request
+            handles the request, checks if request is valid
             </summary>
             <param name="socketclient"></param>
         </member>
+        <member name="T:SEUebung.Response">
+            <summary>
+            Response class
+            </summary>
+        </member>
+        <member name="M:SEUebung.Response.#ctor">
+            <summary>
+            constructor of the Response
+            </summary>
+        </member>
+        <member name="P:SEUebung.Response.Status">
+            <summary>
+            returns the Statuscode with the Name
+            </summary>
+        </member>
+        <member name="P:SEUebung.Response.ContentLength">
+            <summary>
+            returns the Length of the request Content
+            </summary>
+        </member>
+        <member name="P:SEUebung.Response.ContentLanguage">
+            <summary>
+            returns the Content Language
+            </summary>
+        </member>
+        <member name="P:SEUebung.Response.ContentType">
+            <summary>
+            returns the ContentType
+            </summary>
+        </member>
+        <member name="P:SEUebung.Response.Headers">
+            <summary>
+            returns a Dictionary of the Header Values
+            </summary>
+        </member>
+        <member name="M:SEUebung.Response.AddHeader(System.String,System.String)">
+            <summary>
+            Adds a Value to the Header.
+            </summary>
+            <param name="header"></param>
+            <param name="value"></param>
+        </member>
+        <member name="M:SEUebung.Response.Send(System.IO.Stream)">
+            <summary>
+            sends the response
+            </summary>
+            <param name="ns"></param>
+        </member>
         <member name="M:SEUebung.Response.SetContent(System.IO.Stream)">
-            need to set stream;
+            <summary>
+            sets the Content from the Stream
+            </summary>
+            <param name="stream"></param>
+        </member>
+        <member name="M:SEUebung.Response.SetContent(System.Byte[])">
+            <summary>
+            Sets the Content from a byte array
+            </summary>
+            <param name="content"></param>
+        </member>
+        <member name="M:SEUebung.Response.SetContent(System.String)">
+            <summary>
+            sets the content from a string
+            </summary>
+            <param name="content"></param>
+        </member>
+        <member name="P:SEUebung.Response.StatusCode">
+            <summary>
+            sets the Statuscode
+            </summary>
+        </member>
+        <member name="P:SEUebung.Response.ServerHeader">
+            <summary>
+            sets and returns the ServerHeader
+            </summary>
         </member>
     </members>
 </doc>

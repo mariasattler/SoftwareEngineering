@@ -1,4 +1,5 @@
 ﻿using SEUebung.Interfaces;
+using SEUebung.Plugin;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,13 +13,16 @@ namespace SEUebung
     /// </summary>
     public class PluginManager : IPluginManager
     {
+       
         /// <summary>
         /// Constructor 
         /// </summary>
-        /// <param name="plugins"></param>
-        public PluginManager(IEnumerable<IPlugin> plugins)
+        
+        public PluginManager()
         {
-            Plugins = plugins;
+            Plugins = new List<IPlugin>();
+            ((List<IPlugin>)Plugins).Add(new TestPlugin());
+            ((List<IPlugin>)Plugins).Add(new TestPlugin2());
         }
 
         /// <summary>
@@ -31,7 +35,7 @@ namespace SEUebung
         /// <param name="plugin"></param>
         public void Add(IPlugin plugin)
         {
-            throw new NotImplementedException();
+            ((List<IPlugin>)Plugins).Add(plugin);
         }
         /// <summary>
         /// Adds a Plugin to the PluginManager when given a string
@@ -46,7 +50,7 @@ namespace SEUebung
         /// </summary>
         public void Clear()
         {
-            throw new NotImplementedException();
+            ((List<IPlugin>)Plugins).Clear();
         }
     }
 }

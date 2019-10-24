@@ -12,15 +12,20 @@ using System.Threading.Tasks;
 
 namespace SEUebung
 {
+    /// <summary>
+    /// Webserver class
+    /// </summary>
     public class Webserver
     {
         private TcpListener server = null;
         private Boolean running = false;
+        private PluginManager pm = null;
         /// <summary>
         /// Constructor of webserver
         /// </summary>
         public Webserver()
         {
+            pm = new PluginManager(); //im Constructor, damit es nicht bei jedem Thread neu aufgerufen wird
         }
         /// <summary>
         /// starts the Webserver. Waits for a client to connect and than threds the Request
@@ -30,43 +35,56 @@ namespace SEUebung
             server = new TcpListener(Adress, Port);
             running = true;
             server.Start();
-            Console.WriteLine("Wainting for connection...");
+            Console.WriteLine("Wainting for connection..."); //chrome sendet eine req nach dem icon - daher connected der 2x
             while (running)
             {
                 Socket client = server.AcceptSocket();
-                Console.WriteLine("Connected!");
+                Console.WriteLine("Connected!\n");
                 ThreadPool.QueueUserWorkItem(HandleRequest, client);
             }
         }
         /// <summary>
-        /// handles the request
+        /// handles the request, checks if request is valid
         /// </summary>
         /// <param name="socketclient"></param>
         public void HandleRequest(object socketclient)
         {
             Socket client = (Socket)socketclient;
-            using(NetworkStream ns = new NetworkStream(client))
+            using (NetworkStream ns = new NetworkStream(client))
             {
                 Request req = new Request(ns);
+                IUrl test = req.Url;
                 if (req.IsValid)
                 {
-                    IPlugin test = new TestPlugin();
-                    if (test.CanHandle(req) == 0)
-                        SendBadRequest(ns);
-                    else
+                    
+                    List<IPlugin> plugins = (List<IPlugin>)pm.Plugins;
+                    IPlugin plugintodo = null;
+                    float current = 0;
+                    float highest = 0;
+                    foreach (IPlugin p in plugins)
                     {
-                        IResponse res = test.Handle(req);
-                        res.Send(ns);
+
+                        current = p.CanHandle(req);
+                        if (current >= highest)
+                        {
+                            plugintodo = p;
+                            highest = current;
+                        }
+                    }
+
+                    IResponse res = plugintodo.Handle(req);
+                    res.Send(ns);
+
+
+                    if (current == 0 || (req.Url.Segments.Length == 2 && req.Url.Segments[1] != "favicon.ico")) 
+                    {
+                        SendBadRequest(ns);
                     }
                 }
-                else
-                {
-                    SendBadRequest(ns);
-                }
-
             }
             client.Close();
-            Console.WriteLine("Wainting for connection...");
+            Console.WriteLine("\nWainting for connection...");
+          
         }
         private  void SendBadRequest(Stream ns)
         {
@@ -102,7 +120,6 @@ namespace SEUebung
             err.AddHeader(FixStrings.HTTP.CONTENT_TYPE, "text/html");
             err.AddHeader(FixStrings.HTTP.CONTENT_LANGUAGE, "de");
             err.Send(ns);
-           
         }
 
         //sets the IPAdress standard to localhost

@@ -14,7 +14,7 @@ namespace SEUebung
     public class Request : IRequest
     {
         /// <summary>
-        /// Constructor for the Request. reads the Header.
+        /// Constructor for the Request. reads the Header line by line
         /// </summary>
         /// <param name="ns"></param>
         public Request(Stream ns)
@@ -24,11 +24,11 @@ namespace SEUebung
             StreamReader reader = new StreamReader(ns, Encoding.UTF8);
 
             // Read the Header line by line
-            string line;
+            string line = string.Empty;
             while ((line = reader.ReadLine()) != null)
             {
                 Console.WriteLine(line);
-                if (string.IsNullOrEmpty(line)) //if line is empty, then it's end of header
+                if (string.IsNullOrEmpty(line)) //if line is empty, then the end of the header is reached
                     break;
 
                 // Parse HTTP Protocol Parameters
@@ -39,7 +39,7 @@ namespace SEUebung
                     string value = headerline[1].Trim();
                     Headers.Add(key, value);
                 }
-                else
+                else //first Line does not contain ':'
                 {
                     ParseFirstHeaderLine(line);
                 }
@@ -104,7 +104,7 @@ namespace SEUebung
             }
         }
         /// <summary>
-        /// returns the ContentType. Get or Post
+        /// returns the ContentType
         /// </summary>
         public string ContentType
         {
@@ -142,7 +142,8 @@ namespace SEUebung
         {
             string[] elements = line.Split(' ');
             Method = elements[0].ToUpper();
-            Url = new Url(elements[1]);
+
+                Url = new Url(elements[1]);
         }
         private bool CheckValidation()
         {
