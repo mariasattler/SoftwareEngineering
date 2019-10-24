@@ -8,22 +8,33 @@ using System.Threading.Tasks;
 
 namespace SEUebung
 {
+    /// <summary>
+    /// Response class
+    /// </summary>
+   
     public class Response : IResponse
     {
+        private int statuscode;
         private Byte[] contentBytes;
-
+        /// <summary>
+        /// constructor of the Response
+        /// </summary>
         public Response()
         {
             Headers = new Dictionary<string, string>();
             ServerHeader = "BIF-SWE1-Server";
             Status = string.Empty;
         }
-
+        /// <summary>
+        /// returns the Statuscode with the Name
+        /// </summary>
         public string Status
         {
             get; private set;
         }
-
+        /// <summary>
+        /// returns the Length of the request Content
+        /// </summary>
         public int ContentLength
         {
             get
@@ -36,7 +47,9 @@ namespace SEUebung
             }
             private set { }
         }
-
+        /// <summary>
+        /// returns the Content Language
+        /// </summary>
         public string ContentLanguage
         {
             get
@@ -46,6 +59,9 @@ namespace SEUebung
                 return Headers[FixStrings.HTTP.CONTENT_LANGUAGE];
             }
         }
+        /// <summary>
+        /// returns the ContentType
+        /// </summary>
         public string ContentType
         {
             get
@@ -56,11 +72,23 @@ namespace SEUebung
             }
             set { }
         }
+        /// <summary>
+        /// returns a Dictionary of the Header Values
+        /// </summary>
         public IDictionary<string, string> Headers { get; private set; }
+        /// <summary>
+        /// Adds a Value to the Header.
+        /// </summary>
+        /// <param name="header"></param>
+        /// <param name="value"></param>
         public void AddHeader(string header, string value)
         {
             Headers[header] = value;
         }
+        /// <summary>
+        /// sends the response
+        /// </summary>
+        /// <param name="ns"></param>
         public void Send(Stream ns)
         {
             if (Status == string.Empty)
@@ -99,7 +127,10 @@ namespace SEUebung
                 }
             }
         }
-        //need to set stream;
+        /// <summary>
+        /// sets the Content from the Stream
+        /// </summary>
+        /// <param name="stream"></param>
         public void SetContent(Stream stream)
         {
             byte[] b;
@@ -109,20 +140,32 @@ namespace SEUebung
             }
             SetContent(b);
         }
+        /// <summary>
+        /// Sets the Content from a byte array
+        /// </summary>
+        /// <param name="content"></param>
         public void SetContent(Byte[] content)
         {
             this.contentBytes = content;
             Headers.Add(FixStrings.HTTP.CONTENT_LENGTH, content.Length.ToString());
         }
+        /// <summary>
+        /// sets the content from a string
+        /// </summary>
+        /// <param name="content"></param>
         public void SetContent(string content)
         {
             SetContent(Encoding.UTF8.GetBytes(content));
         }
+        /// <summary>
+        /// sets the Statuscode
+        /// </summary>
         public int StatusCode
         {
-            get { return StatusCode; }
+            get { return statuscode; }
             set
             {
+                statuscode   = value;
                 string outvalue = null;
                 FixStrings.HTTP.STATUS_CODES.TryGetValue(value, out outvalue);
                 if (outvalue != null)
@@ -131,6 +174,9 @@ namespace SEUebung
                 }
             }
         }
+        /// <summary>
+        /// sets and returns the ServerHeader
+        /// </summary>
         public string ServerHeader { get; set; }
     }
 }

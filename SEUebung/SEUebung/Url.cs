@@ -9,12 +9,49 @@ using System.Threading.Tasks;
 
 namespace SEUebung
 {
+    /// <summary>
+    /// URL class
+    /// </summary>
     public class Url : IUrl
     {
         private string _url;
+        private const char  _beginparams = '?';
+        private const char _beginfragement = '#';
+        private const char _paramsplit = '&';
+        private const char _segementdivider = '/';
+        IDictionary<string, string> _paramdict = new Dictionary<string, string>();
+        string _filename = string.Empty;
+        /// <summary>
+        /// constructor of the URL
+        /// </summary>
+        /// <param name="url"></param>
         public Url(string url)
         {
             _url = url;
+            //Dictionary mit Parametern füllen
+            if (_url != null && _url != string.Empty && _url.Contains(_beginparams))
+            {
+                string paramstring1 = _url.Split(_beginparams)[1];
+                string paramstring = paramstring1.Split(_beginfragement)[0];
+                foreach (string item in paramstring.Split(_paramsplit))
+                {
+                    _paramdict.Add(item.Split('=')[0], item.Split('=')[1]);
+                }
+
+                //get filename
+                if (Segments.Length > 0)
+                {
+                    string lastsegment = Segments[Segments.Length - 1];
+                    if (lastsegment.Contains(_beginparams))
+                    {
+                        string file = lastsegment.Split(_beginparams)[0];
+                        if (file != string.Empty) //wenn empty gibt es kein file
+                        {
+                            _filename = file;
+                        }
+                    }
+                }
+            }
         }
         public string RawUrl
         {
@@ -28,8 +65,7 @@ namespace SEUebung
         {
             get
             {
-                string withoutpar = _url.Split('?')[0];
-                return withoutpar;
+                return _url.Split(_beginparams)[0];
             }
         }
 
@@ -37,27 +73,7 @@ namespace SEUebung
         {
             get
             {
-                IDictionary<string, string> dict = new Dictionary<string, string>();
-                if (_url != null && _url != string.Empty && _url.Contains('?'))
-                {
-                    string paramstring1 = _url.Split('?')[1];
-                    string paramstring = paramstring1.Split('#')[0];
-                    if (paramstring.Length < 2)
-                    {
-                        return dict;
-                    }
-                    else
-                    {
-                        foreach (string item in paramstring.Split('&'))
-                        {
-                            dict.Add(item.Split('=')[0], item.Split('=')[1]);
-                        }
-                        return dict;
-                    }
-                }
-                else
-                    return dict;
-
+                return _paramdict;
             }
         }
 
@@ -73,19 +89,12 @@ namespace SEUebung
         {
             get
             {
-                string[] emptyarray = new string[] { };
-                if (_url != null && _url != string.Empty)
+                string newurl = _url;
+                if (newurl[0] == _segementdivider)
                 {
-                    string newurl = _url;
-                    if (newurl[0] == '/')
-                    {
-                        newurl = newurl.Remove(0, 1);
-
-                    }
-                    return newurl.Split('/');
+                    newurl = newurl.Remove(0, 1);
                 }
-                else
-                    return emptyarray;
+                return newurl.Split(_segementdivider);
 
             }
         }
@@ -94,26 +103,7 @@ namespace SEUebung
         {
             get
             {
-                if (Segments.Length > 0)
-                {
-                    string lastsegment = Segments[Segments.Length - 1];
-                    if (lastsegment.Contains('?'))
-                    {
-                        string pfad = lastsegment.Split('?')[0];
-                        if (pfad != string.Empty)
-                        {
-                            return pfad;
-                        }
-                        else
-                            return string.Empty;
-                    }
-                    else
-                        return string.Empty;
-                }
-                else
-                    return string.Empty;
-
-
+                return _filename;
             }
         }
 
@@ -121,14 +111,9 @@ namespace SEUebung
         {
             get
             {
-                string extension = string.Empty;
                 if (FileName != string.Empty)
-                {
-                    extension = FileName.Split('.')[1];
-                    return "." + extension;
-
-                }
-                return extension;
+                    return "." + FileName.Split('.')[1];
+                return string.Empty;
             }
         }
 
@@ -139,16 +124,16 @@ namespace SEUebung
                 if (Segments.Length > 0)
                 {
                     string lastsegment = Segments[Segments.Length - 1];
-                    string[] fragment = lastsegment.Split('#');
+                    string[] fragment = lastsegment.Split(_beginfragement);
                     if (fragment.Length == 2)
                     {
                         return fragment[1];
                     }
-                    else return string.Empty;
+                    return string.Empty;
                 }
                 else
                     return string.Empty;
-                
+
             }
         }
     }

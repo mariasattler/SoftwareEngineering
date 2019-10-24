@@ -25,6 +25,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Debug\SEUebung.xml</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -61,20 +62,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Interfaces\IPlugin.cs" />
-    <Compile Include="Interfaces\IPluginManager.cs" />
-    <Compile Include="Interfaces\IRequest.cs" />
-    <Compile Include="Interfaces\IResponse.cs" />
-    <Compile Include="Interfaces\IUrl.cs" />
-    <Compile Include="Plugin.cs" />
     <Compile Include="PluginManager.cs" />
+    <Compile Include="Plugin\TestPlugin.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Request.cs" />
     <Compile Include="FixStrings\HTTP.cs" />
-    <Compile Include="UnitTests\RequestTest.cs" />
-    <Compile Include="UnitTests\ResponseTest.cs" />
-    <Compile Include="UnitTests\UrlParserTest.cs" />
     <Compile Include="Url.cs" />
     <Compile Include="Webserver.cs" />
   </ItemGroup>
@@ -86,8 +79,12 @@
   <ItemGroup>
     <Analyzer Include="..\packages\xunit.analyzers.0.10.0\analyzers\dotnet\cs\xunit.analyzers.dll" />
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
-    <Folder Include="Plugin\" />
+    <ProjectReference Include="..\SEUebung.Interface\SEUebung.Interface.csproj">
+      <Project>{75ad18e2-0f19-476c-acd7-e1f187d3428f}</Project>
+      <Name>SEUebung.Interface</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

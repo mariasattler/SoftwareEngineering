@@ -8,8 +8,15 @@ using System.Threading.Tasks;
 
 namespace SEUebung
 {
+    /// <summary>
+    /// Request
+    /// </summary>
     public class Request : IRequest
     {
+        /// <summary>
+        /// Constructor for the Request. reads the Header.
+        /// </summary>
+        /// <param name="ns"></param>
         public Request(Stream ns)
         {
             Headers = new Dictionary<string, string>();
@@ -50,12 +57,25 @@ namespace SEUebung
 
             IsValid = CheckValidation();
         }
-
+        /// <summary>
+        /// returns the Method
+        /// </summary>
         public string Method { get; private set; }
+        /// <summary>
+        /// returns the URL
+        /// </summary>
         public IUrl Url { get; private set; }
+        /// <summary>
+        /// returns the a Dictionary of all Header Values from the Request
+        /// </summary>
         public IDictionary<string, string> Headers { get; private set; }
+        /// <summary>
+        /// checks if the Request is valid
+        /// </summary>
         public bool IsValid { get; private set; }
-
+        /// <summary>
+        /// returns the UserAgent
+        /// </summary>
         public string UserAgent
         {
             get
@@ -65,21 +85,27 @@ namespace SEUebung
                 return value;
             }
         }
-
+        /// <summary>
+        /// returns how many lines the Header has
+        /// </summary>
         public int HeaderCount { get { return Headers.Count; } }
-
+        /// <summary>
+        /// returns the ContentLength
+        /// </summary>
         public int ContentLength
         {
             get
             {
                 string value = string.Empty;
                 Headers.TryGetValue(FixStrings.HTTP.CONTENT_LENGTH_LW, out value);
-                if (value != string.Empty)
+                if (value != string.Empty && value != null)
                     return Int32.Parse(value);
                 return 0;
             }
         }
-
+        /// <summary>
+        /// returns the ContentType. Get or Post
+        /// </summary>
         public string ContentType
         {
             get
@@ -89,17 +115,23 @@ namespace SEUebung
                 return value;
             }
         }
-
+        /// <summary>
+        /// returns the Stream
+        /// </summary>
         public Stream ContentStream
         {
             get; private set;
         }
-
+        /// <summary>
+        /// returns the ContentString
+        /// </summary>
         public string ContentString
         {
             get; private set;
         }
-
+        /// <summary>
+        /// returns the Content in Bytes
+        /// </summary>
         public byte[] ContentBytes
         {
             get; private set;

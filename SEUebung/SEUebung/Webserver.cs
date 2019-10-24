@@ -1,4 +1,6 @@
-﻿using System;
+﻿using SEUebung.Interfaces;
+using SEUebung.Plugin;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -14,39 +16,48 @@ namespace SEUebung
     {
         private TcpListener server = null;
         private Boolean running = false;
-
+        /// <summary>
+        /// Constructor of webserver
+        /// </summary>
         public Webserver()
         {
         }
-
+        /// <summary>
+        /// starts the Webserver. Waits for a client to connect and than threds the Request
+        /// </summary>
         public void Start()
         {
             server = new TcpListener(Adress, Port);
             running = true;
             server.Start();
+            Console.WriteLine("Wainting for connection...");
             while (running)
             {
-                Console.WriteLine("Wainting for connection...");
                 Socket client = server.AcceptSocket();
                 Console.WriteLine("Connected!");
                 ThreadPool.QueueUserWorkItem(HandleRequest, client);
             }
         }
-
+        /// <summary>
+        /// handles the request
+        /// </summary>
+        /// <param name="socketclient"></param>
         public void HandleRequest(object socketclient)
         {
             Socket client = (Socket)socketclient;
             using(NetworkStream ns = new NetworkStream(client))
             {
                 Request req = new Request(ns);
-                if (!req.IsValid)
+                if (req.IsValid)
                 {
-                    Response res = new Response();
-                    res.AddHeader(FixStrings.HTTP.CONTENT_TYPE, "text/html");
-                    res.AddHeader(FixStrings.HTTP.CONTENT_LANGUAGE, "de");
-                    res.SetContent("<!DOCTYPE html><html><body><h1>Test</h1><h3>hi</h3></body></html>");
-                    res.StatusCode = 200;
-                    res.Send(ns);
+                    IPlugin test = new TestPlugin();
+                    if (test.CanHandle(req) == 0)
+                        SendBadRequest(ns);
+                    else
+                    {
+                        IResponse res = test.Handle(req);
+                        res.Send(ns);
+                    }
                 }
                 else
                 {
@@ -54,8 +65,8 @@ namespace SEUebung
                 }
 
             }
-
             client.Close();
+            Console.WriteLine("Wainting for connection...");
         }
         private  void SendBadRequest(Stream ns)
         {
@@ -91,12 +102,13 @@ namespace SEUebung
             err.AddHeader(FixStrings.HTTP.CONTENT_TYPE, "text/html");
             err.AddHeader(FixStrings.HTTP.CONTENT_LANGUAGE, "de");
             err.Send(ns);
+           
         }
 
         //sets the IPAdress standard to localhost
-        public IPAddress Adress { get; set; } = IPAddress.Loopback;
+        private IPAddress Adress { get; set; } = IPAddress.Loopback;
         //Sets the Port to 8080
-        public int Port { get; set; } = 8080;
+        private int Port { get; set; } = 8080;
     }
 
 }

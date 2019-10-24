@@ -70,7 +70,7 @@ namespace SEUebung.UnitTests
             Url test = new Url(url);
 
             Assert.Equal(3, test.Segments.Length);
-            //Assert.Equal("bar", test.Segments[1]);
+            Assert.Equal("bar", test.Segments[1]);
 
         }
         #endregion

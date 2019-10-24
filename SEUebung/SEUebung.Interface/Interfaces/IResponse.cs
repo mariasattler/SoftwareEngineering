@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 
 namespace SEUebung.Interfaces
 {
+    /// <summary>
+    /// interace for the Repsonse
+    /// </summary>
     public interface IResponse
     {
         /// <summary>

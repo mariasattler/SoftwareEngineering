@@ -1,0 +1,207 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>SEUebung.Interface</name>
+    </assembly>
+    <members>
+        <member name="T:SEUebung.Interfaces.IPlugin">
+            <summary>
+            interface for the Plugin
+            </summary>
+        </member>
+        <member name="M:SEUebung.Interfaces.IPlugin.CanHandle(SEUebung.Interfaces.IRequest)">
+            <summary>
+            Returns a score between 0 and 1 to indicate that the plugin is willing to handle the request. The plugin with the highest score will execute the request.
+            </summary>
+            <param name="req"></param>
+            <returns>A score between 0 and 1</returns>
+        </member>
+        <member name="M:SEUebung.Interfaces.IPlugin.Handle(SEUebung.Interfaces.IRequest)">
+            <summary>
+            Called by the server when the plugin should handle the request.
+            </summary>
+            <param name="req"></param>
+            <returns>A new response object.</returns>
+        </member>
+        <member name="P:SEUebung.Interfaces.IPluginManager.Plugins">
+            <summary>
+            Returns a list of all plugins. Never returns null.
+            </summary>
+        </member>
+        <member name="M:SEUebung.Interfaces.IPluginManager.Add(SEUebung.Interfaces.IPlugin)">
+            <summary>
+            Adds a new plugin. If the plugin was already added, nothing will happen.
+            </summary>
+            <param name="plugin"></param>
+        </member>
+        <member name="M:SEUebung.Interfaces.IPluginManager.Add(System.String)">
+            <summary>
+            Adds a new plugin by type name. If the plugin was already added, nothing will happen.
+            Throws an exeption, when the type cannot be resoled or the type does not implement IPlugin.
+            </summary>
+            <param name="plugin"></param>
+        </member>
+        <member name="M:SEUebung.Interfaces.IPluginManager.Clear">
+            <summary>
+            Clears all plugins
+            </summary>
+        </member>
+        <member name="P:SEUebung.Interfaces.IRequest.IsValid">
+            <summary>
+            Returns true if the request is valid. A request is valid, if method and url could be parsed. A header is not necessary.
+            </summary>
+        </member>
+        <member name="P:SEUebung.Interfaces.IRequest.Method">
+            <summary>
+            Returns the request method in UPPERCASE. get -> GET.
+            </summary>
+        </member>
+        <member name="P:SEUebung.Interfaces.IRequest.Url">
+            <summary>
+            Returns a URL object of the request. Never returns null.
+            </summary>
+        </member>
+        <member name="P:SEUebung.Interfaces.IRequest.Headers">
+            <summary>
+            Returns the request header. Never returns null. All keys must be lower case.
+            </summary>
+        </member>
+        <member name="P:SEUebung.Interfaces.IRequest.UserAgent">
+            <summary>
+            Returns the user agent from the request header
+            </summary>
+        </member>
+        <member name="P:SEUebung.Interfaces.IRequest.HeaderCount">
+            <summary>
+            Returns the number of header or 0, if no header where found.
+            </summary>
+        </member>
+        <member name="P:SEUebung.Interfaces.IRequest.ContentLength">
+            <summary>
+            Returns the parsed content length request header.
+            </summary>
+        </member>
+        <member name="P:SEUebung.Interfaces.IRequest.ContentType">
+            <summary>
+            Returns the parsed content type request header. Never returns null.
+            </summary>
+        </member>
+        <member name="P:SEUebung.Interfaces.IRequest.ContentStream">
+            <summary>
+            Returns the request content (body) stream or null if there is no content stream.
+            </summary>
+        </member>
+        <member name="P:SEUebung.Interfaces.IRequest.ContentString">
+            <summary>
+            Returns the request content (body) as string or null if there is no content.
+            </summary>
+        </member>
+        <member name="P:SEUebung.Interfaces.IRequest.ContentBytes">
+            <summary>
+            Returns the request content (body) as byte[] or null if there is no content.
+            </summary>
+        </member>
+        <member name="P:SEUebung.Interfaces.IResponse.Headers">
+            <summary>
+            Returns a writable dictionary of the response headers. Never returns null.
+            </summary>
+        </member>
+        <member name="P:SEUebung.Interfaces.IResponse.ContentLength">
+            <summary>
+            Returns the content length or 0 if no content is set yet.
+            </summary>
+        </member>
+        <member name="P:SEUebung.Interfaces.IResponse.ContentType">
+            <summary>
+            Gets or sets the content type of the response.
+            </summary>
+            <exception cref="T:System.InvalidOperationException">A specialized implementation may throw a InvalidOperationException when the content type is set by the implementation.</exception>
+        </member>
+        <member name="P:SEUebung.Interfaces.IResponse.StatusCode">
+            <summary>
+            Gets or sets the current status code. An Exceptions is thrown, if no status code was set.
+            </summary>
+        </member>
+        <member name="P:SEUebung.Interfaces.IResponse.Status">
+            <summary>
+            Returns the status code as string. (200 OK)
+            </summary>
+        </member>
+        <member name="M:SEUebung.Interfaces.IResponse.AddHeader(System.String,System.String)">
+            <summary>
+            Adds or replaces a response header in the headers dictionary.
+            </summary>
+            <param name="header"></param>
+            <param name="value"></param>
+        </member>
+        <member name="P:SEUebung.Interfaces.IResponse.ServerHeader">
+            <summary>
+            Gets or sets the Server response header. Defaults to "BIF-SWE1-Server".
+            </summary>
+        </member>
+        <member name="M:SEUebung.Interfaces.IResponse.SetContent(System.String)">
+            <summary>
+            Sets a string content. The content will be encoded in UTF-8.
+            </summary>
+            <param name="content"></param>
+        </member>
+        <member name="M:SEUebung.Interfaces.IResponse.SetContent(System.Byte[])">
+            <summary>
+            Sets a byte[] as content.
+            </summary>
+            <param name="content"></param>
+        </member>
+        <member name="M:SEUebung.Interfaces.IResponse.SetContent(System.IO.Stream)">
+            <summary>
+            Sets the stream as content.
+            </summary>
+            <param name="stream"></param>
+        </member>
+        <member name="M:SEUebung.Interfaces.IResponse.Send(System.IO.Stream)">
+            <summary>
+            Sends the response to the network stream.
+            </summary>
+            <param name="network"></param>
+        </member>
+        <member name="P:SEUebung.Interfaces.IUrl.RawUrl">
+            <summary>
+            Returns the raw url.
+            </summary>
+        </member>
+        <member name="P:SEUebung.Interfaces.IUrl.Path">
+            <summary>
+            Returns the path of the url, without parameter.
+            </summary>
+        </member>
+        <member name="P:SEUebung.Interfaces.IUrl.Parameter">
+            <summary>
+            Returns a dictionary with the parameter of the url. Never returns null.
+            </summary>
+        </member>
+        <member name="P:SEUebung.Interfaces.IUrl.ParameterCount">
+            <summary>
+            Returns the number of parameter of the url. Returns 0 if there are no parameter.
+            </summary>
+        </member>
+        <member name="P:SEUebung.Interfaces.IUrl.Segments">
+            <summary>
+            Returns the segments of the url path. A segment is divided by '/' chars. Never returns null.
+            </summary>
+        </member>
+        <member name="P:SEUebung.Interfaces.IUrl.FileName">
+            <summary>
+            Returns the filename (with extension) of the url path. If the url contains no filename, a empty string is returned. Never returns null. A filename is present in the url, if the last segment contains a name with at least one dot.
+            </summary>
+        </member>
+        <member name="P:SEUebung.Interfaces.IUrl.Extension">
+            <summary>
+            Returns the extension of the url filename, including the leading dot. If the url contains no filename, a empty string is returned. Never returns null.
+            </summary>
+        </member>
+        <member name="P:SEUebung.Interfaces.IUrl.Fragment">
+            <summary>
+            Returns the url fragment. A fragment is the part after a '#' char at the end of the url. If the url contains no fragment, a empty string is returned. Never returns null.
+            </summary>
+        </member>
+    </members>
+</doc>

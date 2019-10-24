@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace SEUebung.Interfaces
 {
+    /// <summary>
+    /// interface for the Plugin
+    /// </summary>
     public interface IPlugin
     {
         /// <summary>

@@ -16,3 +16,8 @@ C:\Users\sattler\Documents\GitHub\SoftwareEngineering\SEUebung\SEUebung\bin\Debu
 C:\Users\sattler\Documents\GitHub\SoftwareEngineering\SEUebung\SEUebung\bin\Debug\xunit.runner.visualstudio.testadapter.dll
 C:\Users\sattler\Documents\GitHub\SoftwareEngineering\SEUebung\SEUebung\bin\Debug\xunit.runner.reporters.net452.dll
 C:\Users\sattler\Documents\GitHub\SoftwareEngineering\SEUebung\SEUebung\obj\Debug\SEUebung.csprojAssemblyReference.cache
+C:\Users\sattler\Documents\GitHub\SoftwareEngineering\SEUebung\SEUebung\bin\Debug\SEUebung.Interface.exe
+C:\Users\sattler\Documents\GitHub\SoftwareEngineering\SEUebung\SEUebung\bin\Debug\SEUebung.Interface.pdb
+C:\Users\sattler\Documents\GitHub\SoftwareEngineering\SEUebung\SEUebung\bin\Debug\SEUebung.Interface.exe.config
+C:\Users\sattler\Documents\GitHub\SoftwareEngineering\SEUebung\SEUebung\bin\Debug\SEUebung.xml
+C:\Users\sattler\Documents\GitHub\SoftwareEngineering\SEUebung\SEUebung\bin\Debug\SEUebung.Interface.xml

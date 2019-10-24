@@ -1,0 +1,62 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>SEUebung</name>
+    </assembly>
+    <members>
+        <member name="P:SEUebung.PluginManager.Plugins">
+            <summary>
+            returns a list of all Plugins
+            </summary>
+        </member>
+        <member name="T:SEUebung.Plugin.TestPlugin">
+            <summary>
+            TestPlugin
+            </summary>
+        </member>
+        <member name="M:SEUebung.Plugin.TestPlugin.CanHandle(SEUebung.Interfaces.IRequest)">
+            <summary>
+            checks if the Plugin is valid
+            </summary>
+            <param name="req"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SEUebung.Plugin.TestPlugin.Handle(SEUebung.Interfaces.IRequest)">
+            <summary>
+            handles the Plugin and returns the response
+            </summary>
+            <param name="req"></param>
+            <returns></returns>
+        </member>
+        <member name="T:SEUebung.Url">
+            <summary>
+            URL class
+            </summary>
+        </member>
+        <member name="M:SEUebung.Url.#ctor(System.String)">
+            <summary>
+            constructor of the URL
+            </summary>
+            <param name="url"></param>
+        </member>
+        <member name="M:SEUebung.Webserver.#ctor">
+            <summary>
+            Constructor of webserver
+            </summary>
+        </member>
+        <member name="M:SEUebung.Webserver.Start">
+            <summary>
+            starts the Webserver. Waits for a client to connect and than threds the Request
+            </summary>
+        </member>
+        <member name="M:SEUebung.Webserver.HandleRequest(System.Object)">
+            <summary>
+            handles the request
+            </summary>
+            <param name="socketclient"></param>
+        </member>
+        <member name="M:SEUebung.Response.SetContent(System.IO.Stream)">
+            need to set stream;
+        </member>
+    </members>
+</doc>
