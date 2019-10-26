@@ -56,14 +56,12 @@ namespace SEUebung
                 IUrl test = req.Url;
                 if (req.IsValid)
                 {
-                    
                     List<IPlugin> plugins = (List<IPlugin>)pm.Plugins;
                     IPlugin plugintodo = null;
                     float current = 0;
                     float highest = 0;
                     foreach (IPlugin p in plugins)
                     {
-
                         current = p.CanHandle(req);
                         if (current >= highest)
                         {
@@ -71,9 +69,11 @@ namespace SEUebung
                             highest = current;
                         }
                     }
-
-                    IResponse res = plugintodo.Handle(req);
-                    res.Send(ns);
+                    if(plugintodo != null)
+                    {
+                        IResponse res = plugintodo.Handle(req);
+                        res.Send(ns);
+                    }
 
 
                     if (current == 0 || (req.Url.Segments.Length == 2 && req.Url.Segments[1] != "favicon.ico")) 

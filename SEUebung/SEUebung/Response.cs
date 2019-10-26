@@ -15,7 +15,7 @@ namespace SEUebung
     public class Response : IResponse
     {
         private int statuscode;
-        private Byte[] contentBytes;
+        private Byte[] contentBytes = null;
         /// <summary>
         /// constructor of the Response
         /// </summary>
@@ -115,16 +115,9 @@ namespace SEUebung
             // Write Content Data
             if (contentBytes != null)
             {
-                try
-                {
                     BinaryWriter contentWriter = new BinaryWriter(ns);
                     contentWriter.Write(contentBytes);
                     contentWriter.Flush();
-                }
-                catch (IOException ex)
-                {
-                    Console.WriteLine(ex.Message);
-                }
             }
         }
         /// <summary>
