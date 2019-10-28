@@ -18,25 +18,20 @@ namespace SEUebung
     public class Webserver
     {
         private TcpListener server = null;
-        private Boolean running = false;
-        private PluginManager pm = null;
+        private PluginManager pm = new PluginManager();
         /// <summary>
         /// Constructor of webserver
         /// </summary>
-        public Webserver()
-        {
-            pm = new PluginManager(); //im Constructor, damit es nicht bei jedem Thread neu aufgerufen wird
-        }
+        public Webserver(){}
         /// <summary>
         /// starts the Webserver. Waits for a client to connect and than threds the Request
         /// </summary>
         public void Start()
         {
             server = new TcpListener(Adress, Port);
-            running = true;
             server.Start();
             Console.WriteLine("Wainting for connection..."); //chrome sendet eine req nach dem icon - daher connected der 2x
-            while (running)
+            while (true)
             {
                 Socket client = server.AcceptSocket();
                 Console.WriteLine("Connected!\n");
@@ -75,8 +70,7 @@ namespace SEUebung
                         res.Send(ns);
                     }
 
-
-                    if (current == 0 || (req.Url.Segments.Length == 1 && req.Url.Segments[0] == "favicon.ico")) 
+                    if (current == 0) 
                     {
                         SendBadRequest(ns);
                     }

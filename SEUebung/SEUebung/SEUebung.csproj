@@ -64,7 +64,7 @@
   <ItemGroup>
     <Compile Include="FixStrings\ResponseStrings.cs" />
     <Compile Include="PluginManager.cs" />
-    <Compile Include="Plugin\TestPlugin2.cs" />
+    <Compile Include="Plugin\StaticDataPlugin.cs" />
     <Compile Include="Plugin\TestPlugin.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

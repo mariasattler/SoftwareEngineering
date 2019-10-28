@@ -1,6 +1,7 @@
 ﻿using SEUebung.Interfaces;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,9 +9,9 @@ using System.Threading.Tasks;
 namespace SEUebung.Plugin
 {
     /// <summary>
-    /// TestPlugin
+    /// StaticDataPlugin
     /// </summary>
-    public class TestPlugin2 : IPlugin
+    public class StaticDataPlugin : IPlugin
     {
         /// <summary>
         /// checks if the Plugin is valid
@@ -23,19 +24,8 @@ namespace SEUebung.Plugin
             {
                 return 2.0f;
             }
-            if (CheckParams(req))
-                return 2.0f;
 
             return 0.0f;
-        }
-
-        private bool CheckParams(IRequest req)
-        {
-            if (req.Url.Parameter.ContainsKey("test"))
-            {
-                return true;
-            }
-            return false;
         }
 
         private bool RightPath(IRequest req)
@@ -58,6 +48,13 @@ namespace SEUebung.Plugin
         public IResponse Handle(IRequest req)
         {
             IResponse res = new Response();
+            string replacedurl = req.Url.RawUrl.Replace("/", "\\");
+            string localURL = Path.Combine(Directory.GetCurrentDirectory(), replacedurl);
+            if (File.Exists(localURL))
+                Console.WriteLine("mach die response mit dem file");
+            else
+                res.StatusCode = 404;
+
             res.AddHeader(FixStrings.HTTP.CONTENT_TYPE, "text/html");
            // res.AddHeader(FixStrings.HTTP.CONTENT_LANGUAGE, "de");
             res.SetContent("<!DOCTYPE html><html><body><h1>Test</h1><h3>hi</h3></body></html>");
