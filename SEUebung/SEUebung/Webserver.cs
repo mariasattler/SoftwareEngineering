@@ -93,7 +93,6 @@ namespace SEUebung
             using (FileStream fsstream = new FileStream(localURL,
             FileMode.Open, FileAccess.Read))
             {
-
                 // Read the source file into a byte array.
                 bytes = new byte[fsstream.Length];
                 int numBytesToRead = (int)fsstream.Length;

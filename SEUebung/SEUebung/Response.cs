@@ -8,47 +8,22 @@ using System.Threading.Tasks;
 
 namespace SEUebung
 {
-    /// <summary>
-    /// Response class
-    /// </summary>
-
     public class Response : IResponse
     {
         private int statuscode = 0;
         private Byte[] contentBytes = null;
-        /// <summary>
-        /// Constructor of the Response. Sets the ServerHeader to BIF-SWE1-Server.
-        /// </summary>
-        public Response()
-        {
-            Headers = new Dictionary<string, string>();
-            ServerHeader = "BIF-SWE1-Server";
-            Status = string.Empty;
-        }
+
+        public Response(){}
         /// <summary>
         /// Returns the Status of the Response as a String 
         /// </summary>
-        public string Status
-        {
-            get; private set;
-        }
+        public string Status{ get; private set;} = string.Empty;
         /// <summary>
         /// Returns the content length or 0 if no content is set yet.
         /// </summary>
-        public int ContentLength
-        {
-            get
-            {
-                string value = string.Empty;
-                Int32 outvalue = 0;
-                Headers.TryGetValue(FixStrings.HTTP.CONTENT_LENGTH, out value);
-                Int32.TryParse(value, out outvalue);
-                return outvalue;
-            }
-        }
+        public int ContentLength { get; private set; } = 0;
         /// <summary>
         /// returns the ContentType
-        /// ------ was ist mit der Exception gemeint?
         /// </summary>
         public string ContentType
         {
@@ -63,7 +38,7 @@ namespace SEUebung
         /// <summary>
         /// returns a Dictionary of the Values from the Header 
         /// </summary>
-        public IDictionary<string, string> Headers { get; private set; }
+        public IDictionary<string, string> Headers { get; private set; } = new Dictionary<string, string>();
         /// <summary>
         /// Adds a Value to the Header.
         /// </summary>
@@ -81,15 +56,21 @@ namespace SEUebung
         {
             // Write Data in Header
             StreamWriter responseheader = new StreamWriter(ns, Encoding.ASCII);
-            responseheader.WriteLine("\r\nHTTP/1.1 {0}", Status);
+
+            responseheader.WriteLine();
+            responseheader.WriteLine("HTTP/1.1 {0}", Status);
             responseheader.WriteLine("Server: {0}", ServerHeader);
-            Console.WriteLine("\nHTTP/1.1 {0}", Status);
+
+            Console.WriteLine();
+            Console.WriteLine("HTTP/1.1 {0}", Status);
             Console.WriteLine("Server: {0}", ServerHeader);
+
             foreach (var item in Headers)
             {
                 responseheader.WriteLine("{0}: {1}", item.Key, item.Value);
                 Console.WriteLine("{0}: {1}", item.Key, item.Value);
             }
+
             responseheader.WriteLine();
             responseheader.Flush();
 
@@ -123,8 +104,12 @@ namespace SEUebung
         /// <param name="content"></param>
         public void SetContent(Byte[] content)
         {
-            this.contentBytes = content;
-            Headers.Add(FixStrings.HTTP.CONTENT_LENGTH, content.Length.ToString());
+            if(content != null)
+            {
+                this.contentBytes = content;
+                Headers.Add(FixStrings.HTTP.CONTENT_LENGTH, content.Length.ToString());
+                ContentLength = content.Length;
+            }
         }
         /// <summary>
         /// sets the content from a string
@@ -146,14 +131,12 @@ namespace SEUebung
                 string outvalue = null;
                 FixStrings.HTTP.STATUS_CODES.TryGetValue(value, out outvalue);
                 if (outvalue != null)
-                {
                     Status = value.ToString() + " "+ outvalue.ToUpper();
-                }
             }
         }
         /// <summary>
         /// sets and returns the ServerHeader
         /// </summary>
-        public string ServerHeader { get; set; }
+        public string ServerHeader { get; set; } = "BIF-SWE1-Server";
     }
 }

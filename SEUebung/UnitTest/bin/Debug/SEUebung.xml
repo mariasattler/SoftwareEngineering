@@ -187,16 +187,6 @@
             </summary>
             <param name="socketclient"></param>
         </member>
-        <member name="T:SEUebung.Response">
-            <summary>
-            Response class
-            </summary>
-        </member>
-        <member name="M:SEUebung.Response.#ctor">
-            <summary>
-            Constructor of the Response. Sets the ServerHeader to BIF-SWE1-Server.
-            </summary>
-        </member>
         <member name="P:SEUebung.Response.Status">
             <summary>
             Returns the Status of the Response as a String 
@@ -210,7 +200,6 @@
         <member name="P:SEUebung.Response.ContentType">
             <summary>
             returns the ContentType
-            ------ was ist mit der Exception gemeint?
             </summary>
         </member>
         <member name="P:SEUebung.Response.Headers">

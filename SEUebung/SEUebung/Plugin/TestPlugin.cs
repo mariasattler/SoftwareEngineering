@@ -21,10 +21,10 @@ namespace SEUebung.Plugin
         {
             if (RightPath(req))
             {
-                return 1.0f;
+                return 3.0f;
             }
             if (CheckParams(req))
-                return 1.0f;
+                return 3.0f;
 
             return 0.0f;
         }

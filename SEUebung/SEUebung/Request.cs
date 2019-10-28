@@ -42,7 +42,7 @@ namespace SEUebung
                     ParseFirstHeaderLine(line);
                 }
             }
-          
+
             //Read Body - only in POST Operation
             if (ContentLength > 0)
             {
@@ -62,7 +62,7 @@ namespace SEUebung
         /// <summary>
         /// returns the URL
         /// </summary>
-        public IUrl Url{get; private set;} = new Url("");
+        public IUrl Url { get; private set; } = new Url("");
         /// <summary>
         /// returns the a Dictionary of all Header Values from the Request
         /// </summary>
@@ -80,7 +80,7 @@ namespace SEUebung
             {
                 string value = string.Empty;
                 Headers.TryGetValue(FixStrings.HTTP.USER_AGENT_LW, out value);
-                if(value != null)
+                if (value != null)
                     return value;
                 return string.Empty;
             }
@@ -112,7 +112,7 @@ namespace SEUebung
             {
                 string value = string.Empty;
                 Headers.TryGetValue(FixStrings.HTTP.CONTENT_TYPE_LW, out value);
-                if(value != null)
+                if (value != null)
                     return value;
                 return string.Empty;
             }
@@ -120,21 +120,21 @@ namespace SEUebung
         /// <summary>
         /// returns the Stream
         /// </summary>
-        public Stream ContentStream{get; private set;} = null;
+        public Stream ContentStream { get; private set; } = null;
         /// <summary>
         /// returns the ContentString
         /// </summary>
-        public string ContentString{get; private set;} = null;
+        public string ContentString { get; private set; } = null;
         /// <summary>
         /// returns the Content in Bytes
         /// </summary>
-        public byte[] ContentBytes{get; private set;} = null;
+        public byte[] ContentBytes { get; private set; } = null;
 
         #region [private]
         private void ParseFirstHeaderLine(string line)
         {
             string[] elements = line.Split(' ');
-            if(elements.Length > 1)
+            if (elements.Length > 1)
             {
                 Method = elements[0].ToUpper();
                 Url = new Url(elements[1]);
@@ -142,7 +142,7 @@ namespace SEUebung
         }
         private bool CheckValidation()
         {
-            if (Url.RawUrl != "" &&(Method == "POST" || Method == "GET"))
+            if (Url.RawUrl != "" && (Method == "POST" || Method == "GET"))
                 return true;
             return false;
         }
