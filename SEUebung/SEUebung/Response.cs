@@ -11,13 +11,13 @@ namespace SEUebung
     /// <summary>
     /// Response class
     /// </summary>
-   
+
     public class Response : IResponse
     {
-        private int statuscode;
+        private int statuscode = 0;
         private Byte[] contentBytes = null;
         /// <summary>
-        /// constructor of the Response
+        /// Constructor of the Response. Sets the ServerHeader to BIF-SWE1-Server.
         /// </summary>
         public Response()
         {
@@ -26,41 +26,29 @@ namespace SEUebung
             Status = string.Empty;
         }
         /// <summary>
-        /// returns the Statuscode with the Name
+        /// Returns the Status of the Response as a String 
         /// </summary>
         public string Status
         {
             get; private set;
         }
         /// <summary>
-        /// returns the Length of the request Content
+        /// Returns the content length or 0 if no content is set yet.
         /// </summary>
         public int ContentLength
         {
             get
             {
-                string value = null;
+                string value = string.Empty;
+                Int32 outvalue = 0;
                 Headers.TryGetValue(FixStrings.HTTP.CONTENT_LENGTH, out value);
-                if (value != null)
-                    return Int32.Parse(value);
-                return 0;
-            }
-            private set { }
-        }
-        /// <summary>
-        /// returns the Content Language
-        /// </summary>
-        public string ContentLanguage
-        {
-            get
-            {
-                if (!Headers.ContainsKey(FixStrings.HTTP.CONTENT_LANGUAGE))
-                    return null;
-                return Headers[FixStrings.HTTP.CONTENT_LANGUAGE];
+                Int32.TryParse(value, out outvalue);
+                return outvalue;
             }
         }
         /// <summary>
         /// returns the ContentType
+        /// ------ was ist mit der Exception gemeint?
         /// </summary>
         public string ContentType
         {
@@ -73,7 +61,7 @@ namespace SEUebung
             set { }
         }
         /// <summary>
-        /// returns a Dictionary of the Header Values
+        /// returns a Dictionary of the Values from the Header 
         /// </summary>
         public IDictionary<string, string> Headers { get; private set; }
         /// <summary>
@@ -83,7 +71,8 @@ namespace SEUebung
         /// <param name="value"></param>
         public void AddHeader(string header, string value)
         {
-            Headers[header] = value;
+            if(FixStrings.ResponseStrings.headerValuesResponse.Contains(header)) 
+                Headers[header] = value;
         }
         /// <summary>
         /// sends the response
@@ -91,10 +80,6 @@ namespace SEUebung
         /// <param name="ns"></param>
         public void Send(Stream ns)
         {
-            if (Status == string.Empty)
-            {
-                throw new InvalidOperationException("Status muss gesetzt werden");
-            }
             // Write Data in Header
             StreamWriter head = new StreamWriter(ns, Encoding.ASCII);
             head.NewLine = "\r\n";
@@ -103,7 +88,6 @@ namespace SEUebung
             Console.WriteLine("\r\n");
             Console.WriteLine("HTTP/1.1 {0}", Status);
             Console.WriteLine("Server: {0}", ServerHeader);
-
             foreach (var item in Headers)
             {
                 head.WriteLine("{0}: {1}", item.Key, item.Value);
@@ -112,12 +96,20 @@ namespace SEUebung
             head.WriteLine();
             head.Flush();
 
-            // Write Content Data
+            // Write the Content Data
             if (contentBytes != null)
             {
+                try
+                {
                     BinaryWriter contentWriter = new BinaryWriter(ns);
                     contentWriter.Write(contentBytes);
                     contentWriter.Flush();
+                }
+                catch (IOException e)
+                {
+                    throw e;
+                }
+
             }
         }
         /// <summary>
@@ -127,11 +119,16 @@ namespace SEUebung
         public void SetContent(Stream stream)
         {
             byte[] b;
-            using (BinaryReader br = new BinaryReader(stream))
+            try
             {
+                BinaryReader br = new BinaryReader(stream);
                 b = br.ReadBytes((int)stream.Length);
+                SetContent(b);
             }
-            SetContent(b);
+            catch(IOException e)
+            {
+                throw e;
+            }
         }
         /// <summary>
         /// Sets the Content from a byte array
@@ -158,7 +155,7 @@ namespace SEUebung
             get { return statuscode; }
             set
             {
-                statuscode   = value;
+                statuscode = value;
                 string outvalue = null;
                 FixStrings.HTTP.STATUS_CODES.TryGetValue(value, out outvalue);
                 if (outvalue != null)

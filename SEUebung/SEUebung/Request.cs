@@ -19,8 +19,6 @@ namespace SEUebung
         /// <param name="ns"></param>
         public Request(Stream ns)
         {
-            Headers = new Dictionary<string, string>();
-            //need to read the request Stream
             StreamReader reader = new StreamReader(ns, Encoding.UTF8);
 
             // Read the Header line by line
@@ -35,7 +33,7 @@ namespace SEUebung
                 if (line.Contains(':'))
                 {
                     string[] headerline = line.Split(':');
-                    string key = headerline[0].ToLower().Trim();//tolower um zu vergleichen
+                    string key = headerline[0].ToLower().Trim();
                     string value = headerline[1].Trim();
                     Headers.Add(key, value);
                 }
@@ -45,7 +43,7 @@ namespace SEUebung
                 }
             }
 
-            //Read Body - only in POST
+            //Read Body - only in POST Operation
             if (ContentLength > 0)
             {
                 char[] body = new char[ContentLength];
@@ -60,15 +58,15 @@ namespace SEUebung
         /// <summary>
         /// returns the Method
         /// </summary>
-        public string Method { get; private set; }
+        public string Method { get; private set; } = string.Empty;
         /// <summary>
         /// returns the URL
         /// </summary>
-        public IUrl Url { get; private set; }
+        public IUrl Url{get; private set;} = new Url("");
         /// <summary>
         /// returns the a Dictionary of all Header Values from the Request
         /// </summary>
-        public IDictionary<string, string> Headers { get; private set; }
+        public IDictionary<string, string> Headers { get; private set; } = new Dictionary<string, string>();
         /// <summary>
         /// checks if the Request is valid
         /// </summary>
@@ -82,7 +80,9 @@ namespace SEUebung
             {
                 string value = string.Empty;
                 Headers.TryGetValue(FixStrings.HTTP.USER_AGENT_LW, out value);
-                return value;
+                if(value != null)
+                    return value;
+                return string.Empty;
             }
         }
         /// <summary>
@@ -97,10 +97,11 @@ namespace SEUebung
             get
             {
                 string value = string.Empty;
+                int outvalue = 0;
                 Headers.TryGetValue(FixStrings.HTTP.CONTENT_LENGTH_LW, out value);
-                if (value != string.Empty && value != null)
-                    return Int32.Parse(value);
-                return 0;
+                value = null;
+                Int32.TryParse(value, out outvalue);
+                return outvalue;
             }
         }
         /// <summary>
@@ -112,42 +113,37 @@ namespace SEUebung
             {
                 string value = string.Empty;
                 Headers.TryGetValue(FixStrings.HTTP.CONTENT_TYPE_LW, out value);
-                return value;
+                if(value != null)
+                    return value;
+                return string.Empty;
             }
         }
         /// <summary>
         /// returns the Stream
         /// </summary>
-        public Stream ContentStream
-        {
-            get; private set;
-        }
+        public Stream ContentStream{get; private set;} = null;
         /// <summary>
         /// returns the ContentString
         /// </summary>
-        public string ContentString
-        {
-            get; private set;
-        }
+        public string ContentString{get; private set;} = null;
         /// <summary>
         /// returns the Content in Bytes
         /// </summary>
-        public byte[] ContentBytes
-        {
-            get; private set;
-        }
+        public byte[] ContentBytes{get; private set;} = null;
 
         #region [private]
         private void ParseFirstHeaderLine(string line)
         {
             string[] elements = line.Split(' ');
-            Method = elements[0].ToUpper();
-
+            if(elements.Length > 1)
+            {
+                Method = elements[0].ToUpper();
                 Url = new Url(elements[1]);
+            }
         }
         private bool CheckValidation()
         {
-            if (Url == null)
+            if (Url.RawUrl == "" || Method == string.Empty)
                 return false;
             return true;
         }

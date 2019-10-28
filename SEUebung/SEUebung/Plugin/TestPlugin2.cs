@@ -59,7 +59,7 @@ namespace SEUebung.Plugin
         {
             IResponse res = new Response();
             res.AddHeader(FixStrings.HTTP.CONTENT_TYPE, "text/html");
-            res.AddHeader(FixStrings.HTTP.CONTENT_LANGUAGE, "de");
+           // res.AddHeader(FixStrings.HTTP.CONTENT_LANGUAGE, "de");
             res.SetContent("<!DOCTYPE html><html><body><h1>Test</h1><h3>hi</h3></body></html>");
             res.StatusCode = 200;
             return res;

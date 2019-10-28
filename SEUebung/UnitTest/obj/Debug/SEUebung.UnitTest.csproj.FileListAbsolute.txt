@@ -22,3 +22,6 @@ C:\Users\sattler\Documents\GitHub\SoftwareEngineering\SEUebung\UnitTest\obj\Debu
 C:\Users\sattler\Documents\GitHub\SoftwareEngineering\SEUebung\UnitTest\obj\Debug\SEUebung.UnitTest.csproj.CopyComplete
 C:\Users\sattler\Documents\GitHub\SoftwareEngineering\SEUebung\UnitTest\obj\Debug\UnitTest.exe
 C:\Users\sattler\Documents\GitHub\SoftwareEngineering\SEUebung\UnitTest\obj\Debug\UnitTest.pdb
+C:\Users\sattler\Documents\GitHub\SoftwareEngineering\SEUebung\UnitTest\bin\Debug\UnitTest.xml
+C:\Users\sattler\Documents\GitHub\SoftwareEngineering\SEUebung\UnitTest\bin\Debug\SEUebung.xml
+C:\Users\sattler\Documents\GitHub\SoftwareEngineering\SEUebung\UnitTest\bin\Debug\SEUebung.Interface.xml

@@ -53,7 +53,6 @@ namespace SEUebung
             using (NetworkStream ns = new NetworkStream(client))
             {
                 Request req = new Request(ns);
-                IUrl test = req.Url;
                 if (req.IsValid)
                 {
                     List<IPlugin> plugins = (List<IPlugin>)pm.Plugins;
@@ -63,7 +62,7 @@ namespace SEUebung
                     foreach (IPlugin p in plugins)
                     {
                         current = p.CanHandle(req);
-                        if (current >= highest)
+                        if (current > highest)
                         {
                             plugintodo = p;
                             highest = current;
