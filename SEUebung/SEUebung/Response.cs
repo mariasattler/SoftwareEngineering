@@ -71,8 +71,7 @@ namespace SEUebung
         /// <param name="value"></param>
         public void AddHeader(string header, string value)
         {
-            if(FixStrings.ResponseStrings.headerValuesResponse.Contains(header)) 
-                Headers[header] = value;
+              Headers[header] = value;
         }
         /// <summary>
         /// sends the response
@@ -81,35 +80,23 @@ namespace SEUebung
         public void Send(Stream ns)
         {
             // Write Data in Header
-            StreamWriter head = new StreamWriter(ns, Encoding.ASCII);
-            head.NewLine = "\r\n";
-            head.WriteLine("HTTP/1.1 {0}", Status);
-            head.WriteLine("Server: {0}", ServerHeader);
-            Console.WriteLine("\r\n");
-            Console.WriteLine("HTTP/1.1 {0}", Status);
+            StreamWriter responseheader = new StreamWriter(ns, Encoding.ASCII);
+            responseheader.WriteLine("\r\nHTTP/1.1 {0}", Status);
+            responseheader.WriteLine("Server: {0}", ServerHeader);
+            Console.WriteLine("\nHTTP/1.1 {0}", Status);
             Console.WriteLine("Server: {0}", ServerHeader);
             foreach (var item in Headers)
             {
-                head.WriteLine("{0}: {1}", item.Key, item.Value);
+                responseheader.WriteLine("{0}: {1}", item.Key, item.Value);
                 Console.WriteLine("{0}: {1}", item.Key, item.Value);
             }
-            head.WriteLine();
-            head.Flush();
+            responseheader.WriteLine();
+            responseheader.Flush();
 
             // Write the Content Data
             if (contentBytes != null)
             {
-                try
-                {
-                    BinaryWriter contentWriter = new BinaryWriter(ns);
-                    contentWriter.Write(contentBytes);
-                    contentWriter.Flush();
-                }
-                catch (IOException e)
-                {
-                    throw e;
-                }
-
+                ns.Write(contentBytes, 0, contentBytes.Length);
             }
         }
         /// <summary>
@@ -160,7 +147,7 @@ namespace SEUebung
                 FixStrings.HTTP.STATUS_CODES.TryGetValue(value, out outvalue);
                 if (outvalue != null)
                 {
-                    Status = value.ToString() + " - " + outvalue;
+                    Status = value.ToString() + " "+ outvalue.ToUpper();
                 }
             }
         }

@@ -4,6 +4,21 @@
         <name>SEUebung</name>
     </assembly>
     <members>
+        <member name="T:SEUebung.FixStrings.ResponseStrings">
+            <summary>
+            new class of fix Strings for the Reponse
+            </summary>
+        </member>
+        <member name="F:SEUebung.FixStrings.ResponseStrings.headerValuesResponse">
+            <summary>
+            new List for the possible Header Values in the Response
+            </summary>
+        </member>
+        <member name="M:SEUebung.FixStrings.ResponseStrings.#cctor">
+            <summary>
+            new instance of the possible response strings
+            </summary>
+        </member>
         <member name="T:SEUebung.PluginManager">
             <summary>
             Plugin Manager
@@ -195,11 +210,12 @@
         <member name="P:SEUebung.Response.ContentType">
             <summary>
             returns the ContentType
+            ------ was ist mit der Exception gemeint?
             </summary>
         </member>
         <member name="P:SEUebung.Response.Headers">
             <summary>
-            returns a Dictionary of the Header Values
+            returns a Dictionary of the Values from the Header 
             </summary>
         </member>
         <member name="M:SEUebung.Response.AddHeader(System.String,System.String)">

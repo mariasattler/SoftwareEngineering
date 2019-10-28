@@ -53,6 +53,7 @@ namespace SEUebung
             using (NetworkStream ns = new NetworkStream(client))
             {
                 Request req = new Request(ns);
+
                 if (req.IsValid)
                 {
                     List<IPlugin> plugins = (List<IPlugin>)pm.Plugins;
@@ -75,7 +76,7 @@ namespace SEUebung
                     }
 
 
-                    if (current == 0 || (req.Url.Segments.Length == 2 && req.Url.Segments[1] != "favicon.ico")) 
+                    if (current == 0 || (req.Url.Segments.Length == 1 && req.Url.Segments[0] == "favicon.ico")) 
                     {
                         SendBadRequest(ns);
                     }

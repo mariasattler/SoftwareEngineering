@@ -42,7 +42,7 @@ namespace SEUebung
                     ParseFirstHeaderLine(line);
                 }
             }
-
+          
             //Read Body - only in POST Operation
             if (ContentLength > 0)
             {
@@ -99,7 +99,6 @@ namespace SEUebung
                 string value = string.Empty;
                 int outvalue = 0;
                 Headers.TryGetValue(FixStrings.HTTP.CONTENT_LENGTH_LW, out value);
-                value = null;
                 Int32.TryParse(value, out outvalue);
                 return outvalue;
             }
@@ -143,9 +142,9 @@ namespace SEUebung
         }
         private bool CheckValidation()
         {
-            if (Url.RawUrl == "" || Method == string.Empty)
-                return false;
-            return true;
+            if (Url.RawUrl != "" &&(Method == "POST" || Method == "GET"))
+                return true;
+            return false;
         }
         #endregion
     }
