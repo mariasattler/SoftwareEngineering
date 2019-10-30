@@ -5,3 +5,4 @@ C:\Users\sattler\Documents\GitHub\SoftwareEngineering\SEUebung\SEUebung.Interfac
 C:\Users\sattler\Documents\GitHub\SoftwareEngineering\SEUebung\SEUebung.Interface\obj\Debug\SEUebung.Interface.csproj.CoreCompileInputs.cache
 C:\Users\sattler\Documents\GitHub\SoftwareEngineering\SEUebung\SEUebung.Interface\obj\Debug\SEUebung.Interface.exe
 C:\Users\sattler\Documents\GitHub\SoftwareEngineering\SEUebung\SEUebung.Interface\obj\Debug\SEUebung.Interface.pdb
+C:\Users\sattler\Documents\GitHub\SoftwareEngineering\SEUebung\SEUebung.Interface\obj\Debug\SEUebung.Interface.csprojAssemblyReference.cache

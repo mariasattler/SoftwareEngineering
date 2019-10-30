@@ -67,7 +67,7 @@ namespace SEUebung.Plugin
         /// <returns></returns>
         private string Get(string fileName)
         {
-            var provider = new FileExtensionContentTypeProvider();
+            FileExtensionContentTypeProvider provider = new FileExtensionContentTypeProvider();
             string contentType;
             if (!provider.TryGetContentType(fileName, out contentType))
             {

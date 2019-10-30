@@ -82,7 +82,7 @@ namespace SEUebung
         }
         public  void SendBadRequest(Stream ns, string error)
         {
-            var localURL = Path.Combine(Directory.GetCurrentDirectory(), "html\\"+error+"error.html");
+            string localURL = Path.Combine(Directory.GetCurrentDirectory(), "html\\"+error+"error.html");
             Console.WriteLine(localURL);
             Response err = new Response();
             err.StatusCode = 400;
