@@ -1,4 +1,5 @@
-﻿using SEUebung.Interfaces;
+﻿using Microsoft.AspNetCore.StaticFiles;
+using SEUebung.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -20,25 +21,13 @@ namespace SEUebung.Plugin
         /// <returns></returns>
         public float CanHandle(IRequest req)
         {
-            if (RightPath(req))
+            if (req != null && req.IsValid)
             {
-                return 2.0f;
+                return 5.0f;
             }
 
             return 0.0f;
         }
-
-        private bool RightPath(IRequest req)
-        {
-            if (req.Url.RawUrl == "/")
-            {
-                return true;
-            }
-            else
-                return false;
-        }
-
-
 
         /// <summary>
         /// handles the Plugin and returns the response
@@ -48,18 +37,44 @@ namespace SEUebung.Plugin
         public IResponse Handle(IRequest req)
         {
             IResponse res = new Response();
-            string replacedurl = req.Url.RawUrl.Replace("/", "\\");
+            string replacedurl = req.Url.RawUrl.Replace("/", "\\").Remove(0,1);
             string localURL = Path.Combine(Directory.GetCurrentDirectory(), replacedurl);
             if (File.Exists(localURL))
-                Console.WriteLine("mach die response mit dem file");
+            {
+                string filename = req.Url.Segments[req.Url.Segments.Length - 1];
+                string mimetype = Get(filename);
+       
+                res.SetContent(File.ReadAllBytes(localURL));
+                res.StatusCode = 200;
+                res.AddHeader(FixStrings.HTTP.CONTENT_TYPE, mimetype);
+            }
             else
+            {
+                res.SetContent(File.ReadAllBytes(Path.Combine(Directory.GetCurrentDirectory(), "html\\404error.html")));
                 res.StatusCode = 404;
+                res.AddHeader(FixStrings.HTTP.CONTENT_TYPE, "text/html");
+            }
 
-            res.AddHeader(FixStrings.HTTP.CONTENT_TYPE, "text/html");
-           // res.AddHeader(FixStrings.HTTP.CONTENT_LANGUAGE, "de");
-            res.SetContent("<!DOCTYPE html><html><body><h1>Test</h1><h3>hi</h3></body></html>");
-            res.StatusCode = 200;
             return res;
         }
+
+
+
+        /// <summary>
+        /// getting the Mimetyp from the filename
+        /// </summary>
+        /// <param name="fileName"></param>
+        /// <returns></returns>
+        private string Get(string fileName)
+        {
+            var provider = new FileExtensionContentTypeProvider();
+            string contentType;
+            if (!provider.TryGetContentType(fileName, out contentType))
+            {
+                contentType = "application/octet-stream";
+            }
+            return contentType;
+        }
+
     }
 }

@@ -22,6 +22,8 @@ namespace SEUebung
         {
             Plugins = new List<IPlugin>();
             ((List<IPlugin>)Plugins).Add(new TestPlugin());
+            ((List<IPlugin>)Plugins).Add(new StaticDataPlugin());
+
         }
 
         /// <summary>

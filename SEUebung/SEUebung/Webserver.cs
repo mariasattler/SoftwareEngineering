@@ -30,7 +30,7 @@ namespace SEUebung
         {
             server = new TcpListener(Adress, Port);
             server.Start();
-            Console.WriteLine("Wainting for connection..."); //chrome sendet eine req nach dem icon - daher connected der 2x
+            Console.WriteLine("Waiting for connection..."); //chrome sendet eine req nach dem icon - daher connected der 2x
             while (true)
             {
                 Socket client = server.AcceptSocket();
@@ -64,52 +64,29 @@ namespace SEUebung
                             highest = current;
                         }
                     }
-                    if(plugintodo != null)
+                    if (plugintodo != null)
                     {
                         IResponse res = plugintodo.Handle(req);
                         res.Send(ns);
                     }
 
-                    if (current == 0) 
+                    if (current == 0)
                     {
-                        SendBadRequest(ns);
+                        SendBadRequest(ns, "400");
                     }
                 }
             }
             client.Close();
-            Console.WriteLine("\nWainting for connection...");
+            Console.WriteLine("\nWaiting for connection...");
           
         }
-        private  void SendBadRequest(Stream ns)
+        public  void SendBadRequest(Stream ns, string error)
         {
-            var localURL = Path.Combine(Directory.GetCurrentDirectory(), "html\\400error.html");
-            byte[] bytes;
-            using (FileStream fsstream = new FileStream(localURL,
-            FileMode.Open, FileAccess.Read))
-            {
-                // Read the source file into a byte array.
-                bytes = new byte[fsstream.Length];
-                int numBytesToRead = (int)fsstream.Length;
-                int numBytesRead = 0;
-                while (numBytesToRead > 0)
-                {
-                    // Read may return anything from 0 to numBytesToRead.
-                    int n = fsstream.Read(bytes, numBytesRead, numBytesToRead);
-
-                    // Break when the end of the file is reached.
-                    if (n == 0)
-                        break;
-
-                    numBytesRead += n;
-                    numBytesToRead -= n;
-                }
-                numBytesToRead = bytes.Length;                
-            }
-
+            var localURL = Path.Combine(Directory.GetCurrentDirectory(), "html\\"+error+"error.html");
             Console.WriteLine(localURL);
             Response err = new Response();
             err.StatusCode = 400;
-            err.SetContent(bytes);
+            err.SetContent(File.ReadAllBytes(localURL));
             err.AddHeader(FixStrings.HTTP.CONTENT_TYPE, "text/html");
             err.AddHeader(FixStrings.HTTP.CONTENT_LANGUAGE, "de");
             err.Send(ns);

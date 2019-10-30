@@ -70,6 +70,13 @@
             <param name="req"></param>
             <returns></returns>
         </member>
+        <member name="M:SEUebung.Plugin.StaticDataPlugin.Get(System.String)">
+            <summary>
+            getting the Mimetyp from the filename
+            </summary>
+            <param name="fileName"></param>
+            <returns></returns>
+        </member>
         <member name="T:SEUebung.Plugin.TestPlugin">
             <summary>
             TestPlugin

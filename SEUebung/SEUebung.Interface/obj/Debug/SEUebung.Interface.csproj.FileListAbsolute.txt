@@ -1,7 +1,7 @@
 C:\Users\sattler\Documents\GitHub\SoftwareEngineering\SEUebung\SEUebung.Interface\bin\Debug\SEUebung.Interface.exe.config
+C:\Users\sattler\Documents\GitHub\SoftwareEngineering\SEUebung\SEUebung.Interface\bin\Debug\SEUebung.Interface.xml
 C:\Users\sattler\Documents\GitHub\SoftwareEngineering\SEUebung\SEUebung.Interface\bin\Debug\SEUebung.Interface.exe
 C:\Users\sattler\Documents\GitHub\SoftwareEngineering\SEUebung\SEUebung.Interface\bin\Debug\SEUebung.Interface.pdb
 C:\Users\sattler\Documents\GitHub\SoftwareEngineering\SEUebung\SEUebung.Interface\obj\Debug\SEUebung.Interface.csproj.CoreCompileInputs.cache
 C:\Users\sattler\Documents\GitHub\SoftwareEngineering\SEUebung\SEUebung.Interface\obj\Debug\SEUebung.Interface.exe
 C:\Users\sattler\Documents\GitHub\SoftwareEngineering\SEUebung\SEUebung.Interface\obj\Debug\SEUebung.Interface.pdb
-C:\Users\sattler\Documents\GitHub\SoftwareEngineering\SEUebung\SEUebung.Interface\bin\Debug\SEUebung.Interface.xml
