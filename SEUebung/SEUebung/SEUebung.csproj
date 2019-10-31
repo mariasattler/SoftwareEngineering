@@ -127,7 +127,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="FixStrings\ResponseStrings.cs" />
     <Compile Include="PluginManager.cs" />
     <Compile Include="Plugin\StaticDataPlugin.cs" />
     <Compile Include="Plugin\TestPlugin.cs" />

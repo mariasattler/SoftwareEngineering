@@ -4,21 +4,6 @@
         <name>SEUebung</name>
     </assembly>
     <members>
-        <member name="T:SEUebung.FixStrings.ResponseStrings">
-            <summary>
-            new class of fix Strings for the Reponse
-            </summary>
-        </member>
-        <member name="F:SEUebung.FixStrings.ResponseStrings.headerValuesResponse">
-            <summary>
-            new List for the possible Header Values in the Response
-            </summary>
-        </member>
-        <member name="M:SEUebung.FixStrings.ResponseStrings.#cctor">
-            <summary>
-            new instance of the possible response strings
-            </summary>
-        </member>
         <member name="T:SEUebung.PluginManager">
             <summary>
             Plugin Manager
