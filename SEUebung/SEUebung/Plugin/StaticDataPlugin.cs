@@ -21,7 +21,7 @@ namespace SEUebung.Plugin
         /// <returns></returns>
         public float CanHandle(IRequest req)
         {
-            if (req != null && req.IsValid)
+            if (req != null && req.IsValid && req.Url.Segments.Length >1)
             {
                 return 5.0f;
             }
