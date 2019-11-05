@@ -62,19 +62,19 @@
             <param name="fileName"></param>
             <returns></returns>
         </member>
-        <member name="T:SEUebung.Plugin.TestPlugin">
+        <member name="T:SEUebung.Plugin.StartPlugin">
             <summary>
             TestPlugin
             </summary>
         </member>
-        <member name="M:SEUebung.Plugin.TestPlugin.CanHandle(SEUebung.Interfaces.IRequest)">
+        <member name="M:SEUebung.Plugin.StartPlugin.CanHandle(SEUebung.Interfaces.IRequest)">
             <summary>
             checks if the Plugin is valid
             </summary>
             <param name="req"></param>
             <returns></returns>
         </member>
-        <member name="M:SEUebung.Plugin.TestPlugin.Handle(SEUebung.Interfaces.IRequest)">
+        <member name="M:SEUebung.Plugin.StartPlugin.Handle(SEUebung.Interfaces.IRequest)">
             <summary>
             handles the Plugin and returns the response
             </summary>

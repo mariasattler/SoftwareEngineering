@@ -21,7 +21,7 @@ namespace SEUebung
         public PluginManager()
         {
             Plugins = new List<IPlugin>();
-            ((List<IPlugin>)Plugins).Add(new TestPlugin());
+            ((List<IPlugin>)Plugins).Add(new StartPlugin());
             ((List<IPlugin>)Plugins).Add(new StaticDataPlugin());
             ((List<IPlugin>)Plugins).Add(new ToLowerPlugin());
 

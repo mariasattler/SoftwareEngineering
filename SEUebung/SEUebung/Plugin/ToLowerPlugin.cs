@@ -35,12 +35,16 @@ namespace SEUebung.Plugin
             {
                 string bodytext = WebUtility.UrlDecode(req.ContentString.Substring(5));
                 res.AddHeader(FixStrings.HTTP.CONTENT_TYPE, "text/html;charset=utf-8");
-                res.SetContent(@"<!DOCTYPE html><head><style>body{ background-color:lightgreen;}</style></head>" +
-                       @" <html><body><p>Everything to lower</p>"+
-                       @"<textarea readonly cols='50' rows='12'>" + bodytext.ToLower().Replace("+", " ") + "</textarea>"+
-                       @"<form action='http://localhost:8080/toLower' method='get'>"+ 
-                       @"<div><button>Go back</button></div></form>"+
-                       @"</body></html>");
+                res.SetContent(@"<!DOCTYPE html><title>Result</title><head>" +
+                        "<link rel='stylesheet' type='text/css' href='static/html/styles.css'>" +
+                        "</head>" +
+                        "<html><body><p>Everything to lower</p>"+
+                        "<textarea readonly cols='50' rows='12'>" + bodytext.ToLower().Replace("+", " ") + "</textarea>"+
+                        @"<form action='http://localhost:8080/toLower' method='get'>"+ 
+                        "<div><button>Go back</button></div></form>"+
+                       @"<form action='http://localhost:8080/' method='get'>" +
+                        "<button> Get back to the start screen!</button></form> "+
+                        "</body></html>");
                 res.StatusCode = 200;
             }
 

@@ -1,6 +1,7 @@
 ﻿using SEUebung.Interfaces;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,7 +11,7 @@ namespace SEUebung.Plugin
     /// <summary>
     /// TestPlugin
     /// </summary>
-    public class TestPlugin : IPlugin
+    public class StartPlugin : IPlugin
     {
         /// <summary>
         /// checks if the Plugin is valid
@@ -23,20 +24,12 @@ namespace SEUebung.Plugin
             {
                 return 0.1f;
             }
-            if (CheckParams(req))
-                return 0.1f;
+
 
             return 0.0f;
         }
 
-        private bool CheckParams(IRequest req)
-        {
-            if (req.Url.Parameter.ContainsKey("test"))
-            {
-                return true;
-            }
-            return false;
-        }
+       
 
         private bool RightPath(IRequest req)
         {
@@ -60,7 +53,7 @@ namespace SEUebung.Plugin
             Response res = new Response();
             res.AddHeader(FixStrings.HTTP.CONTENT_TYPE, "text/html");
          //   res.AddHeader(FixStrings.HTTP.CONTENT_LANGUAGE, "de");
-            res.SetContent("<!DOCTYPE html><html><body><h1>Test</h1><h3>hi</h3></body></html>");
+            res.SetContent(File.ReadAllBytes(Path.Combine(Directory.GetCurrentDirectory(), "html\\index.html")));
             res.StatusCode = 200;
             return res;
         }

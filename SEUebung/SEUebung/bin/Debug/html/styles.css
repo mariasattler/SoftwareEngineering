@@ -1,0 +1,15 @@
+  button{
+  width: 350px;
+  height: 30px;
+  margin: 4px;
+  border-radius: 25px;
+  }
+   body{
+   background-color:beige;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  min-height: 100vh;
+  }

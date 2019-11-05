@@ -21,9 +21,9 @@ namespace SEUebung.Plugin
         /// <returns></returns>
         public float CanHandle(IRequest req)
         {
-            if (req != null && req.IsValid && req.Url.Segments.Length >1)
+            if (req != null && req.IsValid && req.Url.Segments[0] == "static")
             {
-                return 0.5f;
+                return 1.0f;
             }
 
             return 0.0f;
@@ -37,7 +37,7 @@ namespace SEUebung.Plugin
         public IResponse Handle(IRequest req)
         {
             Response res = new Response();
-            string replacedurl = req.Url.RawUrl.Replace("/", "\\").Remove(0,1);
+            string replacedurl = req.Url.RawUrl.Replace("/", "\\").Remove(0,8);
             string localURL = Path.Combine(Directory.GetCurrentDirectory(), replacedurl);
             if (File.Exists(localURL))
             {

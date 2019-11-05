@@ -1,6 +1,3 @@
-C:\Users\sattler\Documents\GitHub\SoftwareEngineering\SEUebung\SEUebung\obj\Debug\SEUebung.csprojAssemblyReference.cache
-C:\Users\sattler\Documents\GitHub\SoftwareEngineering\SEUebung\SEUebung\obj\Debug\SEUebung.exe.config
-C:\Users\sattler\Documents\GitHub\SoftwareEngineering\SEUebung\SEUebung\obj\Debug\SEUebung.csproj.CoreCompileInputs.cache
 C:\Users\sattler\Documents\GitHub\SoftwareEngineering\SEUebung\SEUebung\bin\Debug\xunit.runner.utility.net452.dll
 C:\Users\sattler\Documents\GitHub\SoftwareEngineering\SEUebung\SEUebung\bin\Debug\xunit.abstractions.dll
 C:\Users\sattler\Documents\GitHub\SoftwareEngineering\SEUebung\SEUebung\bin\Debug\xunit.runner.visualstudio.testadapter.dll
@@ -156,6 +153,9 @@ C:\Users\sattler\Documents\GitHub\SoftwareEngineering\SEUebung\SEUebung\bin\Debu
 C:\Users\sattler\Documents\GitHub\SoftwareEngineering\SEUebung\SEUebung\bin\Debug\xunit.assert.xml
 C:\Users\sattler\Documents\GitHub\SoftwareEngineering\SEUebung\SEUebung\bin\Debug\xunit.core.xml
 C:\Users\sattler\Documents\GitHub\SoftwareEngineering\SEUebung\SEUebung\bin\Debug\xunit.execution.desktop.xml
+C:\Users\sattler\Documents\GitHub\SoftwareEngineering\SEUebung\SEUebung\obj\Debug\SEUebung.csprojAssemblyReference.cache
+C:\Users\sattler\Documents\GitHub\SoftwareEngineering\SEUebung\SEUebung\obj\Debug\SEUebung.exe.config
+C:\Users\sattler\Documents\GitHub\SoftwareEngineering\SEUebung\SEUebung\obj\Debug\SEUebung.csproj.CoreCompileInputs.cache
 C:\Users\sattler\Documents\GitHub\SoftwareEngineering\SEUebung\SEUebung\obj\Debug\SEUebung.csproj.CopyComplete
 C:\Users\sattler\Documents\GitHub\SoftwareEngineering\SEUebung\SEUebung\obj\Debug\SEUebung.exe
 C:\Users\sattler\Documents\GitHub\SoftwareEngineering\SEUebung\SEUebung\obj\Debug\SEUebung.pdb

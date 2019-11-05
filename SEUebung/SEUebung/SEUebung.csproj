@@ -129,7 +129,7 @@
   <ItemGroup>
     <Compile Include="PluginManager.cs" />
     <Compile Include="Plugin\StaticDataPlugin.cs" />
-    <Compile Include="Plugin\TestPlugin.cs" />
+    <Compile Include="Plugin\StartPlugin.cs" />
     <Compile Include="Plugin\ToLowerPlugin.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

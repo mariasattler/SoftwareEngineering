@@ -1,16 +1,24 @@
 <!doctype html>
 <html>
   <head>
-  <style>
-  body{
-   background-color:yellow;
-  }
-  </style>
+  <link rel="stylesheet" type="text/css" href="static/html/styles.css">
+  
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Beschreibung der Seite (erscheint in der Titelzeile des Browsers)</title>
+    <title>Welcome</title>
   </head>
-  <body>
-    <p>Dieser Text wird im Browserfenster angezeigt.</p>
+  <body>	
+	<form action="http://localhost:8080/toLower" method="get">
+		<button>I want to have a small text</button>
+	</form>
+	<form action="http://localhost:8080/static/html/static.html" method="get">
+		<button>I want to try the static Plugin</button>
+	</form>
+	<form action="http://localhost:8080/toLower" method="get">
+		<button>I want to the navigation</button>
+	</form>
+	<form action="http://localhost:8080/toLower" method="get">
+		<button>I want to try the temperature measurement</button>
+	</form>
   </body>
 </html>
