@@ -23,6 +23,7 @@ namespace SEUebung
             Plugins = new List<IPlugin>();
             ((List<IPlugin>)Plugins).Add(new TestPlugin());
             ((List<IPlugin>)Plugins).Add(new StaticDataPlugin());
+            ((List<IPlugin>)Plugins).Add(new ToLowerPlugin());
 
         }
 
@@ -36,7 +37,10 @@ namespace SEUebung
         /// <param name="plugin"></param>
         public void Add(IPlugin plugin)
         {
-            ((List<IPlugin>)Plugins).Add(plugin);
+            if (!Plugins.Contains(plugin))
+            {
+                ((List<IPlugin>)Plugins).Add(plugin);
+            }
         }
         /// <summary>
         /// Adds a Plugin to the PluginManager when given a string

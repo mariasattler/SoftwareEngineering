@@ -23,7 +23,7 @@ namespace SEUebung.Plugin
         {
             if (req != null && req.IsValid && req.Url.Segments.Length >1)
             {
-                return 5.0f;
+                return 0.5f;
             }
 
             return 0.0f;
@@ -36,7 +36,7 @@ namespace SEUebung.Plugin
         /// <returns></returns>
         public IResponse Handle(IRequest req)
         {
-            IResponse res = new Response();
+            Response res = new Response();
             string replacedurl = req.Url.RawUrl.Replace("/", "\\").Remove(0,1);
             string localURL = Path.Combine(Directory.GetCurrentDirectory(), replacedurl);
             if (File.Exists(localURL))

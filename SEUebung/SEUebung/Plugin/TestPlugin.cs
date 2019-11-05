@@ -21,10 +21,10 @@ namespace SEUebung.Plugin
         {
             if (RightPath(req))
             {
-                return 3.0f;
+                return 0.1f;
             }
             if (CheckParams(req))
-                return 3.0f;
+                return 0.1f;
 
             return 0.0f;
         }
@@ -57,7 +57,7 @@ namespace SEUebung.Plugin
         /// <returns></returns>
         public IResponse Handle(IRequest req)
         {
-            IResponse res = new Response();
+            Response res = new Response();
             res.AddHeader(FixStrings.HTTP.CONTENT_TYPE, "text/html");
          //   res.AddHeader(FixStrings.HTTP.CONTENT_LANGUAGE, "de");
             res.SetContent("<!DOCTYPE html><html><body><h1>Test</h1><h3>hi</h3></body></html>");

@@ -28,6 +28,8 @@ namespace SEUebung
         public Url(string url)
         {
             _url = url;
+            if (_url == "/toLower?") //chrome hängt ein ? dran
+                _url = "/toLower";
             //Dictionary mit Parametern füllen
             if (_url != null && _url != string.Empty && _url.Contains(_beginparams))
             {
