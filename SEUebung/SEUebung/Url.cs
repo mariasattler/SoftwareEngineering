@@ -27,15 +27,14 @@ namespace SEUebung
         /// <param name="url"></param>
         public Url(string url)
         {
-            _url = url;
-            //if (Segments.Length == 1 && Segments[0].Substring(Segments[0].Length - 1, 1) == "?")
-            //{  //chrome hängt ein ? dran
-            //    _url = url.Split('?')[0];
-            //}
           
-                
+            if (url.Length > 1 && url[url.Length - 1] == '?') //chorme hängt ein ? an die url dran
+                url = url.Split('?')[0];
+
+            _url = url;
+
             //Dictionary mit Parametern füllen
-            if (_url != null && _url != string.Empty && _url.Contains(_beginparams))
+            if (_url != null && _url != string.Empty && _url.Contains(_beginparams) && RawUrl[RawUrl.Length-1] != '?')
             {
                 string paramstring1 = _url.Split(_beginparams)[1];
                 string paramstring = paramstring1.Split(_beginfragement)[0];
