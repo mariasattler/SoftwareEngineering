@@ -159,3 +159,7 @@ C:\Users\sattler\Documents\GitHub\SoftwareEngineering\SEUebung\SEUebung\obj\Debu
 C:\Users\sattler\Documents\GitHub\SoftwareEngineering\SEUebung\SEUebung\obj\Debug\SEUebung.csproj.CopyComplete
 C:\Users\sattler\Documents\GitHub\SoftwareEngineering\SEUebung\SEUebung\obj\Debug\SEUebung.exe
 C:\Users\sattler\Documents\GitHub\SoftwareEngineering\SEUebung\SEUebung\obj\Debug\SEUebung.pdb
+C:\Users\sattler\Documents\GitHub\SoftwareEngineering\SEUebung\SEUebung\bin\Debug\MySqlConnector.dll
+C:\Users\sattler\Documents\GitHub\SoftwareEngineering\SEUebung\SEUebung\bin\Debug\System.Threading.Tasks.Extensions.dll
+C:\Users\sattler\Documents\GitHub\SoftwareEngineering\SEUebung\SEUebung\bin\Debug\MySqlConnector.xml
+C:\Users\sattler\Documents\GitHub\SoftwareEngineering\SEUebung\SEUebung\bin\Debug\System.Threading.Tasks.Extensions.xml

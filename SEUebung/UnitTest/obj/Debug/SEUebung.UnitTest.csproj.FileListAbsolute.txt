@@ -64,3 +64,9 @@ C:\Users\sattler\Documents\GitHub\SoftwareEngineering\SEUebung\UnitTest\obj\Debu
 C:\Users\sattler\Documents\GitHub\SoftwareEngineering\SEUebung\UnitTest\obj\Debug\SEUebung.UnitTest.csproj.CopyComplete
 C:\Users\sattler\Documents\GitHub\SoftwareEngineering\SEUebung\UnitTest\obj\Debug\UnitTest.exe
 C:\Users\sattler\Documents\GitHub\SoftwareEngineering\SEUebung\UnitTest\obj\Debug\UnitTest.pdb
+C:\Users\sattler\Documents\GitHub\SoftwareEngineering\SEUebung\UnitTest\bin\Debug\MySqlConnector.dll
+C:\Users\sattler\Documents\GitHub\SoftwareEngineering\SEUebung\UnitTest\bin\Debug\System.Threading.Tasks.Extensions.dll
+C:\Users\sattler\Documents\GitHub\SoftwareEngineering\SEUebung\UnitTest\bin\Debug\System.Data.Common.dll
+C:\Users\sattler\Documents\GitHub\SoftwareEngineering\SEUebung\UnitTest\bin\Debug\MySqlConnector.xml
+C:\Users\sattler\Documents\GitHub\SoftwareEngineering\SEUebung\UnitTest\bin\Debug\System.Threading.Tasks.Extensions.xml
+C:\Users\sattler\Documents\GitHub\SoftwareEngineering\SEUebung\UnitTest\obj\Debug\UnitTest.exe.config

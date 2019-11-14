@@ -4,6 +4,9 @@
         <name>SEUebung</name>
     </assembly>
     <members>
+        <member name="M:SEUebung.DBConnect.Create">
+            Insert statement
+        </member>
         <member name="T:SEUebung.PluginManager">
             <summary>
             Plugin Manager

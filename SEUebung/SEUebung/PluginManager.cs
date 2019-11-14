@@ -24,6 +24,7 @@ namespace SEUebung
             ((List<IPlugin>)Plugins).Add(new StartPlugin());
             ((List<IPlugin>)Plugins).Add(new StaticDataPlugin());
             ((List<IPlugin>)Plugins).Add(new ToLowerPlugin());
+            ((List<IPlugin>)Plugins).Add(new GetTemperature());
 
         }
 
