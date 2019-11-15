@@ -134,8 +134,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DBConnect.cs" />
-    <Compile Include="DBEntity.cs" />
+    <Compile Include="Database\DBConnect.cs" />
+    <Compile Include="Database\DBEntity.cs" />
     <Compile Include="PluginManager.cs" />
     <Compile Include="Plugin\GetTemperature.cs" />
     <Compile Include="Plugin\StaticDataPlugin.cs" />

@@ -15,7 +15,7 @@ namespace SEUebung.Plugin
     {
         public float CanHandle(IRequest req)
         {
-            if(req.Url.Segments[0] == "toLower")
+            if(req.Url.Segments[0] == "ToLower")
             {
                 return 1.0f;
             }
@@ -40,7 +40,7 @@ namespace SEUebung.Plugin
                         "</head>" +
                         "<html><body><p>Everything to lower</p>"+
                         "<textarea readonly cols='50' rows='12'>" + bodytext.ToLower().Replace("+", " ") + "</textarea>"+
-                        @"<form action='http://localhost:8080/toLower' method='get'>"+ 
+                        @"<form action='http://localhost:8080/ToLower' method='get'>"+ 
                         "<div><button>Go back</button></div></form>"+
                        @"<form action='http://localhost:8080/' method='get'>" +
                         "<button> Get back to the start screen!</button></form> "+

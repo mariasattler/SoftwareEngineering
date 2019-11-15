@@ -4,8 +4,54 @@
         <name>SEUebung</name>
     </assembly>
     <members>
-        <member name="M:SEUebung.DBConnect.Create">
+        <member name="M:SEUebung.Database.DBConnect.#ctor">
+            Constructor
+        </member>
+        <member name="M:SEUebung.Database.DBConnect.Create">
             Insert statement
+        </member>
+        <member name="M:SEUebung.Database.DBConnect.Drop">
+            <summary>
+            drop Table
+            </summary>
+        </member>
+        <member name="M:SEUebung.Database.DBConnect.Insert">
+            <summary>
+            Insert Values
+            </summary>
+        </member>
+        <member name="M:SEUebung.Database.DBConnect.Select(System.Boolean,System.String,System.String,System.String)">
+            Select statement
+        </member>
+        <member name="P:SEUebung.Database.DBEntity.id">
+            <summary>
+            returns the id
+            </summary>
+        </member>
+        <member name="P:SEUebung.Database.DBEntity.day">
+            <summary>
+            returns the day
+            </summary>
+        </member>
+        <member name="P:SEUebung.Database.DBEntity.month">
+            <summary>
+            returns the month
+            </summary>
+        </member>
+        <member name="P:SEUebung.Database.DBEntity.year">
+            <summary>
+            returns the year
+            </summary>
+        </member>
+        <member name="P:SEUebung.Database.DBEntity.time">
+            <summary>
+            returns the time
+            </summary>
+        </member>
+        <member name="P:SEUebung.Database.DBEntity.temp">
+            <summary>
+            returns the temperature
+            </summary>
         </member>
         <member name="T:SEUebung.PluginManager">
             <summary>

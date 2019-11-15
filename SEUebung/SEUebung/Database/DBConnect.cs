@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SEUebung
+namespace SEUebung.Database
 {
     public class DBConnect
     {
@@ -16,7 +16,7 @@ namespace SEUebung
         private string password;
         private string port;
 
-        //Constructor
+        ///Constructor
         public DBConnect()
         {
             Initialize();
@@ -85,13 +85,13 @@ namespace SEUebung
         public void Create()
         {
             
-            string query = @"Create Table Temperatur(
+            string query = @"Create Table Temperature(
                             id numeric not null primary key,
                             temp numeric not null,
-                            tag numeric not null,
-                            monat numeric not null,
-                            jahr numeric not null,
-                            uhrzeit varchar(10) not null);";
+                            day numeric not null,
+                            month numeric not null,
+                            year numeric not null,
+                            time varchar(10) not null);";
 
             if (OpenConnection()==true)
             {
@@ -102,10 +102,12 @@ namespace SEUebung
                 this.CloseConnection();
             }
         }
-
-        public void drop()
+        /// <summary>
+        /// drop Table
+        /// </summary>
+        public void Drop()
         {
-            string query = "drop table Temperatur";
+            string query = "drop table Temperature";
             if (OpenConnection() == true)
             {
                 MySqlCommand cmd = new MySqlCommand(query, connection);
@@ -115,6 +117,9 @@ namespace SEUebung
                 this.CloseConnection();
             }
         }
+        /// <summary>
+        /// Insert Values
+        /// </summary>
         public void Insert()
         {
             int id = 1;
@@ -126,9 +131,9 @@ namespace SEUebung
                 {
                     for(int day = 1; day <32; day++)
                     {
-                        query.Append($"insert into Temperatur (id, temp, tag, monat, jahr, uhrzeit) values ({id}, {rnd.Next(-20,40)},{day},{month},{year},'8 AM');"); id++;
-                        query.Append($"insert into Temperatur (id, temp, tag, monat, jahr, uhrzeit) values ({id}, {rnd.Next(-20, 40)},{day},{month},{year},'12 AM');"); id++;
-                        query.Append($"insert into Temperatur (id, temp, tag, monat, jahr, uhrzeit) values ({id}, {rnd.Next(-20, 40)},{day},{month},{year},'3 PM');"); id++;
+                        query.Append($"insert into Temperature (id, temp, day, month, year, time) values ({id}, {rnd.Next(-20,40)},{day},{month},{year},'8 AM');"); id++;
+                        query.Append($"insert into Temperature (id, temp, day, month, year, time) values ({id}, {rnd.Next(-20, 40)},{day},{month},{year},'12 AM');"); id++;
+                        query.Append($"insert into Temperature (id, temp, day, month, year, time) values ({id}, {rnd.Next(-20, 40)},{day},{month},{year},'3 PM');"); id++;
                     }
                 }
             }
@@ -143,12 +148,12 @@ namespace SEUebung
             }
         }
 
-        //Select statement
+        ///Select statement
         public List<DBEntity> Select(bool withDay, string year = null, string month = null, string day = null)
         {
-            string query = $"SELECT * FROM Temperatur where jahr = {year} and monat = {month} and tag = {day}";
+            string query = $"SELECT * FROM Temperature where year = {year} and month = {month} and day = {day}";
             if(!withDay) //first attempt
-                query = $"SELECT * FROM Temperatur where jahr = {year} and monat = {month}";
+                query = $"SELECT * FROM Temperature where year = {year} and month = {month}";
 
             //Create a list to store the result
             List<DBEntity> list = new List<DBEntity>();
@@ -166,9 +171,9 @@ namespace SEUebung
                 //Read the data and store them in the list
                 while (dataReader.Read())
                 {
-                    list.Add(new DBEntity(Int32.Parse(dataReader["id"].ToString()), Int32.Parse(dataReader["tag"].ToString()),
-                        Int32.Parse(dataReader["monat"].ToString()), Int32.Parse(dataReader["jahr"].ToString()), Int32.Parse(dataReader["temp"].ToString()), 
-                        dataReader["uhrzeit"].ToString()));
+                    list.Add(new DBEntity(Int32.Parse(dataReader["id"].ToString()), Int32.Parse(dataReader["day"].ToString()),
+                        Int32.Parse(dataReader["month"].ToString()), Int32.Parse(dataReader["year"].ToString()), Int32.Parse(dataReader["temp"].ToString()), 
+                        dataReader["time"].ToString()));
                 }
 
                 //close Data Reader
