@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 
 namespace SEUebung.Database
 {
+    /// <summary>
+    /// class DBConnect
+    /// </summary>
     public class DBConnect
     {
         private MySqlConnection connection;

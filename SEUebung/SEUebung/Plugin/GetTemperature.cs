@@ -10,6 +10,9 @@ using System.Xml;
 
 namespace SEUebung.Plugin
 {
+    /// <summary>
+    /// GetTemperature Plugin
+    /// </summary>
     public class GetTemperature : IPlugin
     {
         private DBConnect db = new DBConnect();
@@ -19,7 +22,11 @@ namespace SEUebung.Plugin
         private string year = "2008";
         private string month = "1";
         private string day = string.Empty;
-
+        /// <summary>
+        /// checks if the Plugin can handle that request
+        /// </summary>
+        /// <param name="req"></param>
+        /// <returns></returns>
         public float CanHandle(IRequest req)
         {
             
@@ -93,7 +100,11 @@ namespace SEUebung.Plugin
             }
             return 0.0f;
         }
-
+        /// <summary>
+        /// handles the req
+        /// </summary>
+        /// <param name="req"></param>
+        /// <returns></returns>
         public IResponse Handle(IRequest req)
         {
             Response res = new Response
@@ -136,7 +147,7 @@ namespace SEUebung.Plugin
             {
                 body.Append($"<tr><td>{e.day}.{e.month}.{e.year}</td><td>{e.time}</td><td>{e.temp}</td>");
             }
-            body.Append(@"</table><form action='http://localhost:8080/GetTemperature' method='post'><button name='getprevious'>Previous Month</button></from>
+            body.Append(@"</table><form action='http://localhost:8080/GetTemperature' method='post'><button name='getprevious'>Previous Month</button></form>
                                  <form action='http://localhost:8080/GetTemperature' method='post'><button name='getnext'>Next Month</button></form>
                              <div><form action='http://localhost:8080/' method'get'><button>Get back to the start screen!</button></form></body></html>");
 

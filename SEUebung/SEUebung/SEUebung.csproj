@@ -138,6 +138,7 @@
     <Compile Include="Database\DBEntity.cs" />
     <Compile Include="PluginManager.cs" />
     <Compile Include="Plugin\GetTemperature.cs" />
+    <Compile Include="Plugin\NavigationPlugin.cs" />
     <Compile Include="Plugin\StaticDataPlugin.cs" />
     <Compile Include="Plugin\StartPlugin.cs" />
     <Compile Include="Plugin\ToLowerPlugin.cs" />

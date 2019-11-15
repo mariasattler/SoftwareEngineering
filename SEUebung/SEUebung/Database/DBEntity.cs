@@ -6,8 +6,20 @@ using System.Threading.Tasks;
 
 namespace SEUebung.Database
 {
+    /// <summary>
+    /// class DBEntity
+    /// </summary>
     public class DBEntity : IDBentiy
     {
+        /// <summary>
+        /// DBEntity Constructor
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="day"></param>
+        /// <param name="month"></param>
+        /// <param name="year"></param>
+        /// <param name="temp"></param>
+        /// <param name="time"></param>
         public DBEntity(int id, int day, int month, int year, int temp, string time)
         {
             this.id = id;

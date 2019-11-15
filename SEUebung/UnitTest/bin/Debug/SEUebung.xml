@@ -4,11 +4,45 @@
         <name>SEUebung</name>
     </assembly>
     <members>
+        <member name="T:SEUebung.Database.DBConnect">
+            <summary>
+            class DBConnect
+            </summary>
+        </member>
+        <member name="M:SEUebung.Database.DBConnect.#ctor">
+            Constructor
+        </member>
         <member name="M:SEUebung.Database.DBConnect.Create">
             Insert statement
         </member>
+        <member name="M:SEUebung.Database.DBConnect.Drop">
+            <summary>
+            drop Table
+            </summary>
+        </member>
+        <member name="M:SEUebung.Database.DBConnect.Insert">
+            <summary>
+            Insert Values
+            </summary>
+        </member>
         <member name="M:SEUebung.Database.DBConnect.Select(System.Boolean,System.String,System.String,System.String)">
             Select statement
+        </member>
+        <member name="T:SEUebung.Database.DBEntity">
+            <summary>
+            class DBEntity
+            </summary>
+        </member>
+        <member name="M:SEUebung.Database.DBEntity.#ctor(System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.String)">
+            <summary>
+            DBEntity Constructor
+            </summary>
+            <param name="id"></param>
+            <param name="day"></param>
+            <param name="month"></param>
+            <param name="year"></param>
+            <param name="temp"></param>
+            <param name="time"></param>
         </member>
         <member name="P:SEUebung.Database.DBEntity.id">
             <summary>
@@ -71,6 +105,49 @@
             <summary>
             clears the Plugin
             </summary>
+        </member>
+        <member name="T:SEUebung.Plugin.GetTemperature">
+            <summary>
+            GetTemperature Plugin
+            </summary>
+        </member>
+        <member name="M:SEUebung.Plugin.GetTemperature.CanHandle(SEUebung.Interfaces.IRequest)">
+            <summary>
+            checks if the Plugin can handle that request
+            </summary>
+            <param name="req"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SEUebung.Plugin.GetTemperature.Handle(SEUebung.Interfaces.IRequest)">
+            <summary>
+            handles the req
+            </summary>
+            <param name="req"></param>
+            <returns></returns>
+        </member>
+        <member name="T:SEUebung.Plugin.NavigationPlugin">
+            <summary>
+            NavigationPlugin
+            </summary>
+        </member>
+        <member name="M:SEUebung.Plugin.NavigationPlugin.#ctor">
+            <summary>
+            constructor NavigationPlugin
+            </summary>
+        </member>
+        <member name="M:SEUebung.Plugin.NavigationPlugin.CanHandle(SEUebung.Interfaces.IRequest)">
+            <summary>
+            checks if the plugin can handle the req
+            </summary>
+            <param name="req"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SEUebung.Plugin.NavigationPlugin.Handle(SEUebung.Interfaces.IRequest)">
+            <summary>
+            handles the req
+            </summary>
+            <param name="req"></param>
+            <returns></returns>
         </member>
         <member name="T:SEUebung.Plugin.StaticDataPlugin">
             <summary>

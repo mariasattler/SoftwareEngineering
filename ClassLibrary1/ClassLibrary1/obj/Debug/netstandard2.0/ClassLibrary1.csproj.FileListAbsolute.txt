@@ -1,0 +1,8 @@
+C:\Users\sattler\source\repos\ClassLibrary1\ClassLibrary1\obj\Debug\netstandard2.0\ClassLibrary1.csproj.CoreCompileInputs.cache
+C:\Users\sattler\source\repos\ClassLibrary1\ClassLibrary1\obj\Debug\netstandard2.0\ClassLibrary1.AssemblyInfoInputs.cache
+C:\Users\sattler\source\repos\ClassLibrary1\ClassLibrary1\obj\Debug\netstandard2.0\ClassLibrary1.AssemblyInfo.cs
+C:\Users\sattler\source\repos\ClassLibrary1\ClassLibrary1\bin\Debug\netstandard2.0\ClassLibrary1.deps.json
+C:\Users\sattler\source\repos\ClassLibrary1\ClassLibrary1\bin\Debug\netstandard2.0\ClassLibrary1.dll
+C:\Users\sattler\source\repos\ClassLibrary1\ClassLibrary1\bin\Debug\netstandard2.0\ClassLibrary1.pdb
+C:\Users\sattler\source\repos\ClassLibrary1\ClassLibrary1\obj\Debug\netstandard2.0\ClassLibrary1.dll
+C:\Users\sattler\source\repos\ClassLibrary1\ClassLibrary1\obj\Debug\netstandard2.0\ClassLibrary1.pdb

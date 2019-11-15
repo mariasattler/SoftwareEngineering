@@ -4,6 +4,41 @@
         <name>SEUebung.Interface</name>
     </assembly>
     <members>
+        <member name="T:SEUebung.IDBentiy">
+            <summary>
+            Interface DBEntity
+            </summary>
+        </member>
+        <member name="P:SEUebung.IDBentiy.id">
+            <summary>
+            returns id
+            </summary>
+        </member>
+        <member name="P:SEUebung.IDBentiy.day">
+            <summary>
+            returns day
+            </summary>
+        </member>
+        <member name="P:SEUebung.IDBentiy.month">
+            <summary>
+            returns month
+            </summary>
+        </member>
+        <member name="P:SEUebung.IDBentiy.year">
+            <summary>
+            returns year
+            </summary>
+        </member>
+        <member name="P:SEUebung.IDBentiy.time">
+            <summary>
+            returns time
+            </summary>
+        </member>
+        <member name="P:SEUebung.IDBentiy.temp">
+            <summary>
+            return the temperature
+            </summary>
+        </member>
         <member name="T:SEUebung.Interfaces.IPlugin">
             <summary>
             interface for the Plugin
@@ -49,6 +84,11 @@
         <member name="M:SEUebung.Interfaces.IPluginManager.Clear">
             <summary>
             Clears all plugins
+            </summary>
+        </member>
+        <member name="T:SEUebung.Interfaces.IRequest">
+            <summary>
+            Request interface
             </summary>
         </member>
         <member name="P:SEUebung.Interfaces.IRequest.IsValid">
@@ -172,6 +212,11 @@
             Sends the response to the network stream.
             </summary>
             <param name="network"></param>
+        </member>
+        <member name="T:SEUebung.Interfaces.IUrl">
+            <summary>
+            Url Interface
+            </summary>
         </member>
         <member name="P:SEUebung.Interfaces.IUrl.RawUrl">
             <summary>

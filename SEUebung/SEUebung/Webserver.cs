@@ -6,6 +6,7 @@ using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Sockets;
+using System.Reflection;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -22,12 +23,17 @@ namespace SEUebung
         /// <summary>
         /// Constructor of webserver
         /// </summary>
-        public Webserver(){}
+        public Webserver(
+            
+            ){}
         /// <summary>
         /// starts the Webserver. Waits for a client to connect and than threds the Request
         /// </summary>
         public void Start()
         {
+
+            pm.Add("SEUebung.Plugin.StartPlugin");
+
             server = new TcpListener(Adress, Port);
             server.Start();
             Console.WriteLine("Waiting for connection..."); //chrome sendet eine req nach dem icon - daher connected der 2x
